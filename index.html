@@ -52,7 +52,7 @@
         .navbar .container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 24px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
         .logo span { color: var(--secondary); }
-        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
         .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 15px; transition: var(--transition); }
         .nav-links a:hover { color: var(--primary); }
         .nav-cta {
@@ -122,7 +122,6 @@
             font-weight: 500;
             box-shadow: var(--shadow);
         }
-        .hero-badges .badge i { margin-right: 6px; }
         .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
         .btn-primary {
             background: var(--primary);
@@ -253,6 +252,49 @@
             .mode-grid { grid-template-columns: 1fr; }
         }
 
+        /* ===== 产品与系统入口 ===== */
+        .section-systems {
+            padding: 80px 0;
+            background: var(--bg-white);
+            border-top: 1px solid #F3F4F6;
+            border-bottom: 1px solid #F3F4F6;
+        }
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .system-card {
+            background: var(--bg-gray);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .system-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        .system-icon { font-size: 40px; margin-bottom: 12px; }
+        .system-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .system-card p { font-size: 14px; color: var(--text-light); margin-bottom: 16px; }
+        .system-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .system-link:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .systems-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .systems-grid { grid-template-columns: 1fr; }
+        }
+
         /* ===== 创新亮点 ===== */
         .section-innovation { padding: 80px 0; background: var(--bg-gray); }
         .innovation-grid {
@@ -365,6 +407,7 @@
             <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
             <div class="nav-links">
                 <a href="#mode">核心模式</a>
+                <a href="#systems">产品系统</a>
                 <a href="#innovation">创新亮点</a>
                 <a href="#impact">社会价值</a>
                 <a href="#contact" class="nav-cta">联系我们</a>
@@ -446,6 +489,41 @@
         </div>
     </section>
 
+    <!-- ===== 产品与系统入口 ===== -->
+    <section class="section-systems" id="systems">
+        <div class="container">
+            <div class="section-tag">产品与系统</div>
+            <h2 class="section-title">灵狐近选 · 全场景服务矩阵</h2>
+            <p class="section-sub">面向品牌方、仓主、消费者与运营者的完整产品体系</p>
+            <div class="systems-grid">
+                <div class="system-card">
+                    <div class="system-icon">🏢</div>
+                    <h3>灵狐品牌通</h3>
+                    <p>品牌方一站式管理平台：商品上架、铺货计划、外单通、AI数据看板</p>
+                    <a href="#" class="system-link" target="_blank">进入品牌通 →</a>
+                </div>
+                <div class="system-card">
+                    <div class="system-icon">🧠</div>
+                    <h3>灵狐大脑</h3>
+                    <p>平台运营中台：全平台监控、资产发行、交易撮合、智能风控</p>
+                    <a href="#" class="system-link" target="_blank">进入灵狐大脑 →</a>
+                </div>
+                <div class="system-card">
+                    <div class="system-icon">📱</div>
+                    <h3>灵狐近选APP</h3>
+                    <p>消费者端：最快2分钟送达，社区好物即时购</p>
+                    <a href="#" class="system-link" target="_blank">下载APP →</a>
+                </div>
+                <div class="system-card">
+                    <div class="system-icon">📦</div>
+                    <h3>灵狐掌柜</h3>
+                    <p>仓主端作业工具：接单、拣货、核销、收益提现一站式完成</p>
+                    <a href="#" class="system-link" target="_blank">进入灵狐掌柜 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== 创新亮点 ===== -->
     <section class="section-innovation" id="innovation">
         <div class="container">
@@ -493,7 +571,7 @@
         <div class="container">
             <h2>一起定义即时零售新范式</h2>
             <p>无论你是品牌方、社区仓主、还是关注创新的投资人，灵狐近选都欢迎你的加入。</p>
-            <a href="mailto:hello@linghu.com" class="btn-white">📧 联系我们</a>
+            <a href="mailto:hello@aifox.club" class="btn-white">📧 联系我们</a>
         </div>
     </section>
 
@@ -503,7 +581,6 @@
             <div>
                 <div class="brand">灵狐<span>近选</span></div>
                 <div class="copy">© 2026 灵狐近选 · AI驱动社区即时零售</div>
-                <!-- ===== 苏ICP备2026041363号 ===== -->
                 <div class="icp">
                     <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">
                         苏ICP备2026041363号
@@ -512,9 +589,10 @@
             </div>
             <div class="links">
                 <a href="#mode">核心模式</a>
+                <a href="#systems">产品系统</a>
                 <a href="#innovation">创新亮点</a>
                 <a href="#impact">社会价值</a>
-                <a href="mailto:hello@linghu.com">联系合作</a>
+                <a href="mailto:hello@aifox.club">联系合作</a>
             </div>
         </div>
     </footer>
