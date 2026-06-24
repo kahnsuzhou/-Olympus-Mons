@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>灵狐近选 · AI驱动社区即时零售</title>
-    <meta name="description" content="灵狐近选是一个以AI技术驱动的社区即时零售平台，首创移动闪电仓模式，实现最快2分钟送达。">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>">
+    <meta name="description" content="灵狐近选是一个以AI技术驱动的社区即时零售平台，首创移动闪电仓模式，实现最快2分钟送达。" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>" />
     <style>
         /* ===== 全局重置 ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
             background: #FAFAFA;
@@ -149,12 +153,7 @@
         }
         .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
 
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+        .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
         .hero-phone {
             width: 260px;
             height: 520px;
@@ -325,7 +324,7 @@
         }
         .section-cta .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
 
-        /* ===== 页脚 ===== */
+        /* ===== 页脚（含备案信息） ===== */
         footer {
             background: #1A1A2E;
             color: rgba(255,255,255,0.6);
@@ -338,6 +337,19 @@
         footer .links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; }
         footer .links a:hover { color: #fff; }
         footer .copy { font-size: 13px; margin-top: 8px; }
+        footer .icp {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 8px;
+        }
+        footer .icp a {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+        }
+        footer .icp a:hover {
+            color: rgba(255,255,255,0.7);
+            text-decoration: underline;
+        }
 
         @media (max-width: 640px) {
             footer .container { flex-direction: column; align-items: center; text-align: center; }
@@ -346,169 +358,183 @@
 </head>
 <body>
 
-<!-- ===== 导航 ===== -->
-<nav class="navbar">
-    <div class="container">
-        <div class="logo">灵狐<span>近选</span></div>
-        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
-        <div class="nav-links">
-            <a href="#mode">核心模式</a>
-            <a href="#innovation">创新亮点</a>
-            <a href="#impact">社会价值</a>
-            <a href="#contact" class="nav-cta">联系我们</a>
-        </div>
-    </div>
-</nav>
-
-<!-- ===== HERO ===== -->
-<section class="hero">
-    <div class="container">
-        <div class="hero-grid">
-            <div>
-                <div class="hero-badges">
-                    <span class="badge">🚀 AI驱动</span>
-                    <span class="badge">⚡ 最快2分钟达</span>
-                    <span class="badge">🌱 社区零碳</span>
-                </div>
-                <h1>社区即时零售的<br><span class="highlight">“移动闪电仓”</span></h1>
-                <p>用AI调度云仓，用移动仓触达邻里，定义即时零售新范式。</p>
-                <div class="hero-cta">
-                    <a href="#contact" class="btn-primary">合作咨询</a>
-                    <a href="#mode" class="btn-outline">了解更多 ↓</a>
-                </div>
+    <!-- ===== 导航 ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">灵狐<span>近选</span></div>
+            <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+            <div class="nav-links">
+                <a href="#mode">核心模式</a>
+                <a href="#innovation">创新亮点</a>
+                <a href="#impact">社会价值</a>
+                <a href="#contact" class="nav-cta">联系我们</a>
             </div>
-            <div class="hero-visual">
-                <div class="hero-phone">
-                    <div class="screen">
-                        <div class="emoji-big">🦊</div>
-                        <div class="app-name">灵狐近选</div>
-                        <div class="app-desc">AI · 社区 · 2分钟达</div>
-                        <div class="time-badge">⏱️ 最快 2 分钟送达</div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <div class="hero-badges">
+                        <span class="badge">🚀 AI驱动</span>
+                        <span class="badge">⚡ 最快2分钟达</span>
+                        <span class="badge">🌱 社区零碳</span>
+                    </div>
+                    <h1>社区即时零售的<br><span class="highlight">“移动闪电仓”</span></h1>
+                    <p>用AI调度云仓，用移动仓触达邻里，定义即时零售新范式。</p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn-primary">合作咨询</a>
+                        <a href="#mode" class="btn-outline">了解更多 ↓</a>
                     </div>
                 </div>
-                <div class="float-badge tl"><span class="icon">📦</span> 社区云仓</div>
-                <div class="float-badge br"><span class="icon">🧠</span> AI调度</div>
+                <div class="hero-visual">
+                    <div class="hero-phone">
+                        <div class="screen">
+                            <div class="emoji-big">🦊</div>
+                            <div class="app-name">灵狐近选</div>
+                            <div class="app-desc">AI · 社区 · 2分钟达</div>
+                            <div class="time-badge">⏱️ 最快 2 分钟送达</div>
+                        </div>
+                    </div>
+                    <div class="float-badge tl"><span class="icon">📦</span> 社区云仓</div>
+                    <div class="float-badge br"><span class="icon">🧠</span> AI调度</div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ===== 数据条 ===== -->
-<section class="data-bar">
-    <div class="container">
-        <div class="data-grid">
-            <div><div class="num">2026</div><div class="label">即时零售突破1万亿</div></div>
-            <div><div class="num">2-5万</div><div class="label">单仓启动成本</div></div>
-            <div><div class="num">2-3元</div><div class="label">单均履约成本</div></div>
-            <div><div class="num">2分钟</div><div class="label">极致送达时效</div></div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== 核心模式 ===== -->
-<section class="section-mode" id="mode">
-    <div class="container">
-        <div class="section-tag">核心模式</div>
-        <h2 class="section-title">如何做到“2分钟送达”</h2>
-        <p class="section-sub">灵狐近选通过三重新模式，重构社区即时零售的履约链路</p>
-        <div class="mode-grid">
-            <div class="mode-card">
-                <div class="icon">🚛</div>
-                <h3>移动闪电仓</h3>
-                <p>面包车/房车停放在小区内，作为移动前置仓，商品已在楼下，下单即达。</p>
-                <p style="font-size:13px;color:var(--primary);font-weight:600;margin-top:8px;">单仓成本 2-5 万元</p>
-            </div>
-            <div class="mode-card">
-                <div class="icon">🧠</div>
-                <h3>AI预见性供应链</h3>
-                <p>基于用户搜索、浏览行为，在用户下单前将商品预铺至社区云仓，实现“货找人”。</p>
-                <p style="font-size:13px;color:var(--secondary);font-weight:600;margin-top:8px;">缺货率降低 67%</p>
-            </div>
-            <div class="mode-card">
-                <div class="icon">🤝</div>
-                <h3>仓主即邻居</h3>
-                <p>宝妈、退休人员用闲置空间成为仓主，按单赚服务费，邻里信任即履约保障。</p>
-                <p style="font-size:13px;color:var(--text-light);font-weight:600;margin-top:8px;">0 租金 · 0 库存</p>
+    <!-- ===== 数据条 ===== -->
+    <section class="data-bar">
+        <div class="container">
+            <div class="data-grid">
+                <div><div class="num">2026</div><div class="label">即时零售突破1万亿</div></div>
+                <div><div class="num">2-5万</div><div class="label">单仓启动成本</div></div>
+                <div><div class="num">2-3元</div><div class="label">单均履约成本</div></div>
+                <div><div class="num">2分钟</div><div class="label">极致送达时效</div></div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ===== 创新亮点 ===== -->
-<section class="section-innovation" id="innovation">
-    <div class="container">
-        <div class="section-tag">创新亮点</div>
-        <h2 class="section-title">四大核心创新</h2>
-        <p class="section-sub">灵狐近选用技术重新定义社区零售的效率与温度</p>
-        <div class="innovation-grid">
-            <div class="innovation-item">
-                <div class="icon">📉</div>
-                <div><h4>单均履约成本降低 75%</h4><p>传统模式8-12元，灵狐闪电仓仅2-3元，配送效率行业领先。</p></div>
-            </div>
-            <div class="innovation-item">
-                <div class="icon">📍</div>
-                <div><h4>地理位置数字资产化</h4><p>将社区云仓收益权设计为可交易资产，开辟非稀释性融资新通道。</p></div>
-            </div>
-            <div class="innovation-item">
-                <div class="icon">♻️</div>
-                <div><h4>简装发货 · 绿色减碳</h4><p>年减少纸箱消耗约2,900吨，相当于少砍伐4.9万棵树。</p></div>
-            </div>
-            <div class="innovation-item">
-                <div class="icon">🔄</div>
-                <div><h4>外单通 · 全渠道履约</h4><p>品牌方用一个库存服务天猫、京东、抖音全渠道，降本增效。</p></div>
+    <!-- ===== 核心模式 ===== -->
+    <section class="section-mode" id="mode">
+        <div class="container">
+            <div class="section-tag">核心模式</div>
+            <h2 class="section-title">如何做到“2分钟送达”</h2>
+            <p class="section-sub">灵狐近选通过三重新模式，重构社区即时零售的履约链路</p>
+            <div class="mode-grid">
+                <div class="mode-card">
+                    <div class="icon">🚛</div>
+                    <h3>移动闪电仓</h3>
+                    <p>面包车/房车停放在小区内，作为移动前置仓，商品已在楼下，下单即达。</p>
+                    <p style="font-size:13px;color:var(--primary);font-weight:600;margin-top:8px;">单仓成本 2-5 万元</p>
+                </div>
+                <div class="mode-card">
+                    <div class="icon">🧠</div>
+                    <h3>AI预见性供应链</h3>
+                    <p>基于用户搜索、浏览行为，在用户下单前将商品预铺至社区云仓，实现“货找人”。</p>
+                    <p style="font-size:13px;color:var(--secondary);font-weight:600;margin-top:8px;">缺货率降低 67%</p>
+                </div>
+                <div class="mode-card">
+                    <div class="icon">🤝</div>
+                    <h3>仓主即邻居</h3>
+                    <p>宝妈、退休人员用闲置空间成为仓主，按单赚服务费，邻里信任即履约保障。</p>
+                    <p style="font-size:13px;color:var(--text-light);font-weight:600;margin-top:8px;">0 租金 · 0 库存</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ===== 社会价值 ===== -->
-<section class="section-impact" id="impact">
-    <div class="container">
-        <div class="section-tag">社会价值</div>
-        <h2 class="section-title">重新定义即时零售的社会责任</h2>
-        <p class="section-sub">灵狐近选在创造商业价值的同时，持续为社会减负</p>
-        <div class="impact-grid">
-            <div class="impact-card"><div class="num">5,000+</div><div class="desc">社区仓主岗位（3年内）</div></div>
-            <div class="impact-card"><div class="num">2,900吨</div><div class="desc">年减少纸箱消耗</div></div>
-            <div class="impact-card"><div class="num">4.9万棵</div><div class="desc">相当于少砍伐树木</div></div>
-            <div class="impact-card"><div class="num">20-30%</div><div class="desc">农户直供增收幅度</div></div>
+    <!-- ===== 创新亮点 ===== -->
+    <section class="section-innovation" id="innovation">
+        <div class="container">
+            <div class="section-tag">创新亮点</div>
+            <h2 class="section-title">四大核心创新</h2>
+            <p class="section-sub">灵狐近选用技术重新定义社区零售的效率与温度</p>
+            <div class="innovation-grid">
+                <div class="innovation-item">
+                    <div class="icon">📉</div>
+                    <div><h4>单均履约成本降低 75%</h4><p>传统模式8-12元，灵狐闪电仓仅2-3元，配送效率行业领先。</p></div>
+                </div>
+                <div class="innovation-item">
+                    <div class="icon">📍</div>
+                    <div><h4>地理位置数字资产化</h4><p>将社区云仓收益权设计为可交易资产，开辟非稀释性融资新通道。</p></div>
+                </div>
+                <div class="innovation-item">
+                    <div class="icon">♻️</div>
+                    <div><h4>简装发货 · 绿色减碳</h4><p>年减少纸箱消耗约2,900吨，相当于少砍伐4.9万棵树。</p></div>
+                </div>
+                <div class="innovation-item">
+                    <div class="icon">🔄</div>
+                    <div><h4>外单通 · 全渠道履约</h4><p>品牌方用一个库存服务天猫、京东、抖音全渠道，降本增效。</p></div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ===== CTA ===== -->
-<section class="section-cta" id="contact">
-    <div class="container">
-        <h2>一起定义即时零售新范式</h2>
-        <p>无论你是品牌方、社区仓主、还是关注创新的投资人，灵狐近选都欢迎你的加入。</p>
-        <a href="mailto:hello@linghu.com" class="btn-white">📧 联系我们</a>
-    </div>
-</section>
-
-<!-- ===== 页脚 ===== -->
-<footer>
-    <div class="container">
-        <div>
-            <div class="brand">灵狐<span>近选</span></div>
-            <div class="copy">© 2026 灵狐近选 · AI驱动社区即时零售</div>
+    <!-- ===== 社会价值 ===== -->
+    <section class="section-impact" id="impact">
+        <div class="container">
+            <div class="section-tag">社会价值</div>
+            <h2 class="section-title">重新定义即时零售的社会责任</h2>
+            <p class="section-sub">灵狐近选在创造商业价值的同时，持续为社会减负</p>
+            <div class="impact-grid">
+                <div class="impact-card"><div class="num">5,000+</div><div class="desc">社区仓主岗位（3年内）</div></div>
+                <div class="impact-card"><div class="num">2,900吨</div><div class="desc">年减少纸箱消耗</div></div>
+                <div class="impact-card"><div class="num">4.9万棵</div><div class="desc">相当于少砍伐树木</div></div>
+                <div class="impact-card"><div class="num">20-30%</div><div class="desc">农户直供增收幅度</div></div>
+            </div>
         </div>
-        <div class="links">
-            <a href="#mode">核心模式</a>
-            <a href="#innovation">创新亮点</a>
-            <a href="#impact">社会价值</a>
-            <a href="mailto:hello@linghu.com">联系合作</a>
-        </div>
-    </div>
-</footer>
+    </section>
 
-<script>
-    // 平滑滚动
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    <!-- ===== CTA ===== -->
+    <section class="section-cta" id="contact">
+        <div class="container">
+            <h2>一起定义即时零售新范式</h2>
+            <p>无论你是品牌方、社区仓主、还是关注创新的投资人，灵狐近选都欢迎你的加入。</p>
+            <a href="mailto:hello@linghu.com" class="btn-white">📧 联系我们</a>
+        </div>
+    </section>
+
+    <!-- ===== 页脚（含ICP备案信息） ===== -->
+    <footer>
+        <div class="container">
+            <div>
+                <div class="brand">灵狐<span>近选</span></div>
+                <div class="copy">© 2026 灵狐近选 · AI驱动社区即时零售</div>
+                <!-- ===== 备案信息（请替换为实际备案号） ===== -->
+                <div class="icp">
+                    <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">
+                        苏ICP备XXXXXXXX号
+                    </a>
+                </div>
+            </div>
+            <div class="links">
+                <a href="#mode">核心模式</a>
+                <a href="#innovation">创新亮点</a>
+                <a href="#impact">社会价值</a>
+                <a href="mailto:hello@linghu.com">联系合作</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
-    });
-</script>
+
+        // 移动端菜单切换
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
