@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵狐近选 · AI驱动社区即时零售</title>
+    <meta name="description" content="灵狐近选是一个以AI技术驱动的社区即时零售平台，首创移动闪电仓模式，实现最快2分钟送达。">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>">
+    <style>
+        /* ===== 全局重置 ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+            background: #FAFAFA;
+            color: #1A1A2E;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== 颜色变量 ===== */
+        :root {
+            --primary: #E86A2C;
+            --primary-dark: #D45A1C;
+            --primary-light: #FFF0E8;
+            --secondary: #2D5AFE;
+            --text: #1A1A2E;
+            --text-light: #6B7280;
+            --bg-white: #FFFFFF;
+            --bg-gray: #F9FAFB;
+            --shadow: 0 4px 24px rgba(0,0,0,0.06);
+            --radius: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== 导航 ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+        .logo span { color: var(--secondary); }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 15px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta {
+            background: var(--primary);
+            color: #fff !important;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+        .nav-cta:hover { background: var(--primary-dark) !important; }
+        .menu-toggle { display: none; font-size: 28px; cursor: pointer; background: none; border: none; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; gap: 16px; padding: 20px 0; }
+            .nav-links.open { display: flex; }
+            .menu-toggle { display: block; }
+        }
+
+        /* ===== 通用标题 ===== */
+        .section-title {
+            font-size: 38px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 18px;
+            max-width: 640px;
+            margin: 0 auto 48px;
+        }
+        .section-tag {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(145deg, #FFFFFF 40%, #FFF5EE 100%);
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero h1 { font-size: 52px; font-weight: 900; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1.5px; }
+        .hero h1 .highlight { color: var(--primary); }
+        .hero p { font-size: 18px; color: var(--text-light); max-width: 500px; margin-bottom: 32px; }
+        .hero-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+        .hero-badges .badge {
+            background: var(--bg-white);
+            border: 1px solid #E5E7EB;
+            border-radius: 40px;
+            padding: 6px 18px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+        }
+        .hero-badges .badge i { margin-right: 6px; }
+        .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 2px solid #E5E7EB;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .hero-phone {
+            width: 260px;
+            height: 520px;
+            background: #1A1A2E;
+            border-radius: 36px;
+            padding: 12px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        .hero-phone .screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFF5EE, #FFFFFF);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--text);
+            text-align: center;
+        }
+        .hero-phone .screen .emoji-big { font-size: 60px; margin-bottom: 12px; }
+        .hero-phone .screen .app-name { font-weight: 800; font-size: 22px; }
+        .hero-phone .screen .app-desc { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+        .hero-phone .screen .time-badge {
+            background: var(--primary);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 16px;
+        }
+        .float-badge {
+            position: absolute;
+            background: #fff;
+            border-radius: 16px;
+            padding: 12px 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .float-badge.tl { top: -20px; left: -40px; }
+        .float-badge.br { bottom: -10px; right: -30px; }
+        .float-badge .icon { font-size: 24px; }
+
+        @media (max-width: 768px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero h1 { font-size: 36px; }
+            .hero-phone { width: 200px; height: 400px; }
+            .float-badge { display: none; }
+        }
+
+        /* ===== 数据条 ===== */
+        .data-bar {
+            background: var(--bg-white);
+            border-bottom: 1px solid #F3F4F6;
+            padding: 32px 0;
+        }
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+        .data-grid .num { font-size: 36px; font-weight: 800; color: var(--primary); }
+        .data-grid .label { font-size: 14px; color: var(--text-light); }
+
+        @media (max-width: 640px) {
+            .data-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* ===== 核心模式 ===== */
+        .section-mode { padding: 80px 0; background: var(--bg-white); }
+        .mode-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .mode-card {
+            background: var(--bg-gray);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .mode-card:hover { border-color: var(--primary-light); transform: translateY(-4px); }
+        .mode-card .icon { font-size: 40px; margin-bottom: 16px; }
+        .mode-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .mode-card p { color: var(--text-light); font-size: 15px; }
+
+        @media (max-width: 768px) {
+            .mode-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== 创新亮点 ===== */
+        .section-innovation { padding: 80px 0; background: var(--bg-gray); }
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .innovation-item {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .innovation-item .icon { font-size: 32px; flex-shrink: 0; margin-top: 4px; }
+        .innovation-item h4 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+        .innovation-item p { font-size: 14px; color: var(--text-light); }
+
+        @media (max-width: 640px) {
+            .innovation-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== 社会价值 ===== */
+        .section-impact { padding: 80px 0; background: var(--bg-white); }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .impact-card {
+            text-align: center;
+            padding: 32px 20px;
+            border-radius: var(--radius);
+            background: var(--bg-gray);
+        }
+        .impact-card .num { font-size: 32px; font-weight: 800; color: var(--secondary); }
+        .impact-card .desc { font-size: 14px; color: var(--text-light); margin-top: 4px; }
+
+        @media (max-width: 768px) {
+            .impact-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .impact-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== CTA ===== */
+        .section-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            text-align: center;
+        }
+        .section-cta h2 { font-size: 38px; font-weight: 800; margin-bottom: 16px; }
+        .section-cta p { font-size: 18px; opacity: 0.85; max-width: 520px; margin: 0 auto 32px; }
+        .section-cta .btn-white {
+            background: #fff;
+            color: var(--primary);
+            padding: 14px 48px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .section-cta .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+
+        /* ===== 页脚 ===== */
+        footer {
+            background: #1A1A2E;
+            color: rgba(255,255,255,0.6);
+            padding: 48px 0 32px;
+        }
+        footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 32px; }
+        footer .brand { font-size: 20px; font-weight: 800; color: #fff; }
+        footer .brand span { color: var(--primary); }
+        footer .links { display: flex; gap: 24px; flex-wrap: wrap; }
+        footer .links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; }
+        footer .links a:hover { color: #fff; }
+        footer .copy { font-size: 13px; margin-top: 8px; }
+
+        @media (max-width: 640px) {
+            footer .container { flex-direction: column; align-items: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== 导航 ===== -->
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">灵狐<span>近选</span></div>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+        <div class="nav-links">
+            <a href="#mode">核心模式</a>
+            <a href="#innovation">创新亮点</a>
+            <a href="#impact">社会价值</a>
+            <a href="#contact" class="nav-cta">联系我们</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div>
+                <div class="hero-badges">
+                    <span class="badge">🚀 AI驱动</span>
+                    <span class="badge">⚡ 最快2分钟达</span>
+                    <span class="badge">🌱 社区零碳</span>
+                </div>
+                <h1>社区即时零售的<br><span class="highlight">“移动闪电仓”</span></h1>
+                <p>用AI调度云仓，用移动仓触达邻里，定义即时零售新范式。</p>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn-primary">合作咨询</a>
+                    <a href="#mode" class="btn-outline">了解更多 ↓</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-phone">
+                    <div class="screen">
+                        <div class="emoji-big">🦊</div>
+                        <div class="app-name">灵狐近选</div>
+                        <div class="app-desc">AI · 社区 · 2分钟达</div>
+                        <div class="time-badge">⏱️ 最快 2 分钟送达</div>
+                    </div>
+                </div>
+                <div class="float-badge tl"><span class="icon">📦</span> 社区云仓</div>
+                <div class="float-badge br"><span class="icon">🧠</span> AI调度</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 数据条 ===== -->
+<section class="data-bar">
+    <div class="container">
+        <div class="data-grid">
+            <div><div class="num">2026</div><div class="label">即时零售突破1万亿</div></div>
+            <div><div class="num">2-5万</div><div class="label">单仓启动成本</div></div>
+            <div><div class="num">2-3元</div><div class="label">单均履约成本</div></div>
+            <div><div class="num">2分钟</div><div class="label">极致送达时效</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 核心模式 ===== -->
+<section class="section-mode" id="mode">
+    <div class="container">
+        <div class="section-tag">核心模式</div>
+        <h2 class="section-title">如何做到“2分钟送达”</h2>
+        <p class="section-sub">灵狐近选通过三重新模式，重构社区即时零售的履约链路</p>
+        <div class="mode-grid">
+            <div class="mode-card">
+                <div class="icon">🚛</div>
+                <h3>移动闪电仓</h3>
+                <p>面包车/房车停放在小区内，作为移动前置仓，商品已在楼下，下单即达。</p>
+                <p style="font-size:13px;color:var(--primary);font-weight:600;margin-top:8px;">单仓成本 2-5 万元</p>
+            </div>
+            <div class="mode-card">
+                <div class="icon">🧠</div>
+                <h3>AI预见性供应链</h3>
+                <p>基于用户搜索、浏览行为，在用户下单前将商品预铺至社区云仓，实现“货找人”。</p>
+                <p style="font-size:13px;color:var(--secondary);font-weight:600;margin-top:8px;">缺货率降低 67%</p>
+            </div>
+            <div class="mode-card">
+                <div class="icon">🤝</div>
+                <h3>仓主即邻居</h3>
+                <p>宝妈、退休人员用闲置空间成为仓主，按单赚服务费，邻里信任即履约保障。</p>
+                <p style="font-size:13px;color:var(--text-light);font-weight:600;margin-top:8px;">0 租金 · 0 库存</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 创新亮点 ===== -->
+<section class="section-innovation" id="innovation">
+    <div class="container">
+        <div class="section-tag">创新亮点</div>
+        <h2 class="section-title">四大核心创新</h2>
+        <p class="section-sub">灵狐近选用技术重新定义社区零售的效率与温度</p>
+        <div class="innovation-grid">
+            <div class="innovation-item">
+                <div class="icon">📉</div>
+                <div><h4>单均履约成本降低 75%</h4><p>传统模式8-12元，灵狐闪电仓仅2-3元，配送效率行业领先。</p></div>
+            </div>
+            <div class="innovation-item">
+                <div class="icon">📍</div>
+                <div><h4>地理位置数字资产化</h4><p>将社区云仓收益权设计为可交易资产，开辟非稀释性融资新通道。</p></div>
+            </div>
+            <div class="innovation-item">
+                <div class="icon">♻️</div>
+                <div><h4>简装发货 · 绿色减碳</h4><p>年减少纸箱消耗约2,900吨，相当于少砍伐4.9万棵树。</p></div>
+            </div>
+            <div class="innovation-item">
+                <div class="icon">🔄</div>
+                <div><h4>外单通 · 全渠道履约</h4><p>品牌方用一个库存服务天猫、京东、抖音全渠道，降本增效。</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 社会价值 ===== -->
+<section class="section-impact" id="impact">
+    <div class="container">
+        <div class="section-tag">社会价值</div>
+        <h2 class="section-title">重新定义即时零售的社会责任</h2>
+        <p class="section-sub">灵狐近选在创造商业价值的同时，持续为社会减负</p>
+        <div class="impact-grid">
+            <div class="impact-card"><div class="num">5,000+</div><div class="desc">社区仓主岗位（3年内）</div></div>
+            <div class="impact-card"><div class="num">2,900吨</div><div class="desc">年减少纸箱消耗</div></div>
+            <div class="impact-card"><div class="num">4.9万棵</div><div class="desc">相当于少砍伐树木</div></div>
+            <div class="impact-card"><div class="num">20-30%</div><div class="desc">农户直供增收幅度</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section-cta" id="contact">
+    <div class="container">
+        <h2>一起定义即时零售新范式</h2>
+        <p>无论你是品牌方、社区仓主、还是关注创新的投资人，灵狐近选都欢迎你的加入。</p>
+        <a href="mailto:hello@linghu.com" class="btn-white">📧 联系我们</a>
+    </div>
+</section>
+
+<!-- ===== 页脚 ===== -->
+<footer>
+    <div class="container">
+        <div>
+            <div class="brand">灵狐<span>近选</span></div>
+            <div class="copy">© 2026 灵狐近选 · AI驱动社区即时零售</div>
+        </div>
+        <div class="links">
+            <a href="#mode">核心模式</a>
+            <a href="#innovation">创新亮点</a>
+            <a href="#impact">社会价值</a>
+            <a href="mailto:hello@linghu.com">联系合作</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+</body>
+</html>
