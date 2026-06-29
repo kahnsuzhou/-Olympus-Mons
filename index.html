@@ -821,4 +821,158 @@
                         <span>📍 覆盖 0 个社区</span>
                         <span>👥 服务 0 位居民</span>
                     </div>
-               
+                </div>
+
+                <div class="library-form">
+                    <h4>申请加入近选社区书房</h4>
+                    <form id="libraryApplyForm" action="http://124.222.132.208/api/library/apply" method="POST">
+                        <input type="text" name="name" placeholder="您的姓名" required />
+                        <input type="tel" name="phone" placeholder="手机号" required />
+                        <input type="text" name="community" placeholder="所在小区名称" required />
+                        <input type="text" name="address" placeholder="拟设书房地址" required />
+                        <input type="number" name="area" placeholder="可用面积（平方米）" required />
+                        <select name="space_type" required>
+                            <option value="">空间类型</option>
+                            <option value="云仓">云仓空闲区域</option>
+                            <option value="住宅">住宅/车库</option>
+                            <option value="店铺">店铺/商业空间</option>
+                            <option value="物业用房">物业用房</option>
+                            <option value="其他">其他</option>
+                        </select>
+                        <textarea name="remark" placeholder="补充说明（可选）" rows="2"></textarea>
+                        <button type="submit" class="btn-primary" style="width:100%;text-align:center;">提交申请</button>
+                    </form>
+                    <p class="form-tip">提交后，工作人员将在3个工作日内联系您</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 创新亮点 ===== -->
+    <section class="section-innovation" id="innovation">
+        <div class="container">
+            <div class="section-tag">创新亮点</div>
+            <h2 class="section-title">四大核心创新</h2>
+            <p class="section-sub">灵狐近选用技术重新定义社区零售的效率与温度</p>
+            <div class="innovation-grid">
+                <div class="innovation-item">
+                    <div class="icon">📉</div>
+                    <div><h4>单均履约成本降低 75%</h4><p>传统模式8-12元，灵狐闪电仓仅2-3元，配送效率行业领先。</p></div>
+                </div>
+                <div class="innovation-item">
+                    <div class="icon">📍</div>
+                    <div><h4>地理位置数字资产化</h4><p>将社区云仓收益权设计为可交易资产，开辟非稀释性融资新通道。</p></div>
+                </div>
+                <div class="innovation-item">
+                    <div class="icon">♻️</div>
+                    <div><h4>简装发货 · 绿色减碳</h4><p>年减少纸箱消耗约2,900吨，相当于少砍伐4.9万棵树。</p></div>
+                </div>
+                <div class="innovation-item">
+                    <div class="icon">🔄</div>
+                    <div><h4>外单通 · 全渠道履约</h4><p>品牌方用一个库存服务天猫、京东、抖音全渠道，降本增效。</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 社会价值 ===== -->
+    <section class="section-impact" id="impact">
+        <div class="container">
+            <div class="section-tag">社会价值</div>
+            <h2 class="section-title">重新定义即时零售的社会责任</h2>
+            <p class="section-sub">灵狐近选在创造商业价值的同时，持续为社会减负</p>
+            <div class="impact-grid">
+                <div class="impact-card"><div class="num">5,000+</div><div class="desc">社区仓主岗位（3年内）</div></div>
+                <div class="impact-card"><div class="num">2,900吨</div><div class="desc">年减少纸箱消耗</div></div>
+                <div class="impact-card"><div class="num">4.9万棵</div><div class="desc">相当于少砍伐树木</div></div>
+                <div class="impact-card"><div class="num">20-30%</div><div class="desc">农户直供增收幅度</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="section-cta" id="contact">
+        <div class="container">
+            <h2>一起定义即时零售新范式</h2>
+            <p>无论你是品牌方、社区仓主、还是关注创新的投资人，灵狐近选都欢迎你的加入。</p>
+            <a href="mailto:hello@aifox.club" class="btn-white">📧 联系我们</a>
+        </div>
+    </section>
+
+    <!-- ===== 页脚 ===== -->
+    <footer>
+        <div class="container">
+            <div>
+                <div class="brand">灵狐<span>近选</span></div>
+                <div class="copy">© 2026 灵狐近选 · AI驱动社区即时零售</div>
+                <div class="icp">
+                    <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">
+                        苏ICP备2026041363号
+                    </a>
+                </div>
+            </div>
+            <div class="links">
+                <a href="#mode">核心模式</a>
+                <a href="#systems">产品系统</a>
+                <a href="#news">行业新闻</a>
+                <a href="#library">近选社区书房</a>
+                <a href="#innovation">创新亮点</a>
+                <a href="#impact">社会价值</a>
+                <a href="mailto:hello@aifox.club">联系合作</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== 新闻弹窗数据 =====
+        const newsData = {
+            1: {
+                title: '商务部：即时零售已成为零售业增长新动能',
+                date: '2026.06.28',
+                content: '2025年即时零售市场规模达9714亿元，同比增长24%，预计2026年突破1万亿元。即时零售已成为中国零售业增长的新动能，是推动消费升级、扩大内需的重要力量。商务部表示，将继续完善即时零售发展支持政策，推动线上线下深度融合。'
+            },
+            2: {
+                title: '社区商业"一刻钟便民生活圈"建设加速推进',
+                date: '2026.06.25',
+                content: '全国已建设近4000个一刻钟便民生活圈，社区商业配套持续完善。一刻钟便民生活圈建设已成为补齐社区商业短板、提升居民生活品质的重要抓手。商务部将推动更多城市开展试点，力争到2028年实现地级及以上城市全覆盖。'
+            },
+            3: {
+                title: '即时零售下沉趋势明显，县域市场成新增长点',
+                date: '2026.06.20',
+                content: '平台加快拓展县域市场，即时零售成为从流量驱动到心智驱动的关键抓手。县域市场以其巨大的人口基数和消费升级潜力，成为即时零售新的增长极。2026年一季度，县域即时零售订单同比增长超过60%。'
+            }
+        };
+
+        function openNewsModal(id) {
+            var data = newsData[id];
+            if (!data) return;
+            document.getElementById('modalBody').innerHTML =
+                '<h2 style="font-size:24px;margin-bottom:12px;color:#1A1A2E;">' + data.title + '</h2>' +
+                '<div style="color:#999;font-size:14px;margin-bottom:20px;">' + data.date + '</div>' +
+                '<p style="font-size:16px;line-height:1.8;color:#333;">' + data.content + '</p>';
+            document.getElementById('newsModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNewsModal() {
+            document.getElementById('newsModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 点击蒙层关闭
+        document.getElementById('newsModal').addEventListener('click', function(e) {
+            if (e.target === this) closeNewsModal();
+        });
+
+        // ESC 键关闭
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeNewsModal();
+        });
+
+        // 移动端菜单切换
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
