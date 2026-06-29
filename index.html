@@ -1,6 +1,3 @@
-以下是包含 **域名备案信息** 的完整门户网站代码。可直接复制保存为 `index.html` 使用。
-
-```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -316,6 +313,7 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             border-left: 4px solid var(--primary);
+            cursor: pointer;
         }
         .news-card:hover {
             transform: translateY(-4px);
@@ -351,11 +349,80 @@
             .news-grid { grid-template-columns: 1fr; }
         }
 
+        /* ===== 新闻弹窗 ===== */
+        .news-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .news-modal.show { display: flex; }
+        .news-modal-content {
+            background: #fff;
+            max-width: 700px;
+            width: 90%;
+            max-height: 85vh;
+            border-radius: 20px;
+            padding: 40px;
+            overflow-y: auto;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            font-size: 32px;
+            cursor: pointer;
+            color: #999;
+            border: none;
+            background: none;
+        }
+        .modal-close:hover { color: #333; }
+
         /* ===== 近选社区书房 ===== */
         .section-library {
             padding: 80px 0;
             background: var(--bg-white);
         }
+        .library-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .library-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 21/7;
+            object-fit: cover;
+        }
+        .library-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0 40px;
+        }
+        .library-showcase-item {
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-gray);
+        }
+        .library-showcase-item img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+        }
+        .library-showcase-item p {
+            padding: 8px 12px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+        }
+
         .library-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -424,6 +491,7 @@
 
         @media (max-width: 768px) {
             .library-grid { grid-template-columns: 1fr; }
+            .library-showcase { grid-template-columns: 1fr; }
         }
 
         /* ===== 创新亮点 ===== */
@@ -664,23 +732,23 @@
             <h2 class="section-title">即时零售 · 新鲜资讯</h2>
             <p class="section-sub">关注行业趋势，洞察社区零售新机遇</p>
             <div class="news-grid">
-                <div class="news-card">
+                <div class="news-card" onclick="openNewsModal(1)">
                     <div class="news-date">2026.06.28</div>
                     <h3>商务部：即时零售已成为零售业增长新动能</h3>
                     <p>2025年即时零售市场规模达9714亿元，预计2026年突破1万亿元...</p>
-                    <a href="#" class="news-link">阅读全文 →</a>
+                    <span class="news-link">阅读全文 →</span>
                 </div>
-                <div class="news-card">
+                <div class="news-card" onclick="openNewsModal(2)">
                     <div class="news-date">2026.06.25</div>
                     <h3>社区商业“一刻钟便民生活圈”建设加速推进</h3>
                     <p>全国已建设近4000个一刻钟便民生活圈，社区商业配套持续完善...</p>
-                    <a href="#" class="news-link">阅读全文 →</a>
+                    <span class="news-link">阅读全文 →</span>
                 </div>
-                <div class="news-card">
+                <div class="news-card" onclick="openNewsModal(3)">
                     <div class="news-date">2026.06.20</div>
                     <h3>即时零售下沉趋势明显，县域市场成新增长点</h3>
                     <p>平台加快拓展县域市场，即时零售成为从流量驱动到心智驱动的关键抓手...</p>
-                    <a href="#" class="news-link">阅读全文 →</a>
+                    <span class="news-link">阅读全文 →</span>
                 </div>
             </div>
             <div class="news-more">
@@ -689,12 +757,39 @@
         </div>
     </section>
 
+    <!-- ===== 新闻弹窗 ===== -->
+    <div class="news-modal" id="newsModal">
+        <div class="news-modal-content">
+            <button class="modal-close" onclick="closeNewsModal()">×</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
     <!-- ===== 近选社区书房 ===== -->
     <section class="section-library" id="library">
         <div class="container">
             <div class="section-tag">社区共建</div>
             <h2 class="section-title">近选社区书房 · 你家楼下的共享书房</h2>
             <p class="section-sub">用闲置空间换社区温度，让阅读触手可及</p>
+
+            <!-- 配图区域 -->
+            <div class="library-image">
+                <img src="https://picsum.photos/seed/library2024/1200/400" alt="近选社区书房" />
+            </div>
+            <div class="library-showcase">
+                <div class="library-showcase-item">
+                    <img src="https://picsum.photos/seed/books/400/300" alt="邻里共享书架" />
+                    <p>📚 邻里共享书架</p>
+                </div>
+                <div class="library-showcase-item">
+                    <img src="https://picsum.photos/seed/reading/400/300" alt="阅读空间" />
+                    <p>🛋️ 安静阅读角</p>
+                </div>
+                <div class="library-showcase-item">
+                    <img src="https://picsum.photos/seed/children/400/300" alt="亲子阅读区" />
+                    <p>🧒 亲子阅读区</p>
+                </div>
+            </div>
 
             <div class="library-grid">
                 <div class="library-intro">
@@ -726,65 +821,4 @@
                         <span>📍 覆盖 0 个社区</span>
                         <span>👥 服务 0 位居民</span>
                     </div>
-                </div>
-
-                <div class="library-form">
-                    <h4>申请加入近选社区书房</h4>
-                    <form id="libraryApplyForm" action="http://124.222.132.208/api/library/apply" method="POST">
-                        <input type="text" name="name" placeholder="您的姓名" required />
-                        <input type="tel" name="phone" placeholder="手机号" required />
-                        <input type="text" name="community" placeholder="所在小区名称" required />
-                        <input type="text" name="address" placeholder="拟设书房地址" required />
-                        <input type="number" name="area" placeholder="可用面积（平方米）" required />
-                        <select name="space_type" required>
-                            <option value="">空间类型</option>
-                            <option value="云仓">云仓空闲区域</option>
-                            <option value="住宅">住宅/车库</option>
-                            <option value="店铺">店铺/商业空间</option>
-                            <option value="物业用房">物业用房</option>
-                            <option value="其他">其他</option>
-                        </select>
-                        <textarea name="remark" placeholder="补充说明（可选）" rows="2"></textarea>
-                        <button type="submit" class="btn-primary" style="width:100%;text-align:center;">提交申请</button>
-                    </form>
-                    <p class="form-tip">提交后，工作人员将在3个工作日内联系您</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 创新亮点 ===== -->
-    <section class="section-innovation" id="innovation">
-        <div class="container">
-            <div class="section-tag">创新亮点</div>
-            <h2 class="section-title">四大核心创新</h2>
-            <p class="section-sub">灵狐近选用技术重新定义社区零售的效率与温度</p>
-            <div class="innovation-grid">
-                <div class="innovation-item">
-                    <div class="icon">📉</div>
-                    <div><h4>单均履约成本降低 75%</h4><p>传统模式8-12元，灵狐闪电仓仅2-3元，配送效率行业领先。</p></div>
-                </div>
-                <div class="innovation-item">
-                    <div class="icon">📍</div>
-                    <div><h4>地理位置数字资产化</h4><p>将社区云仓收益权设计为可交易资产，开辟非稀释性融资新通道。</p></div>
-                </div>
-                <div class="innovation-item">
-                    <div class="icon">♻️</div>
-                    <div><h4>简装发货 · 绿色减碳</h4><p>年减少纸箱消耗约2,900吨，相当于少砍伐4.9万棵树。</p></div>
-                </div>
-                <div class="innovation-item">
-                    <div class="icon">🔄</div>
-                    <div><h4>外单通 · 全渠道履约</h4><p>品牌方用一个库存服务天猫、京东、抖音全渠道，降本增效。</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 社会价值 ===== -->
-    <section class="section-impact" id="impact">
-        <div class="container">
-            <div class="section-tag">社会价值</div>
-            <h2 class="section-title">重新定义即时零售的社会责任</h2>
-            <p class="section-sub">灵狐近选在创造商业价值的同时，持续为社会减负</p>
-            <div class="impact-grid">
-                <div class="impact
+               
