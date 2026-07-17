@@ -83,20 +83,6 @@
         .nav-links a:hover {
             color: var(--primary);
         }
-        .lang-switch {
-            background: none;
-            border: 1px solid #E5E7EB;
-            border-radius: 20px;
-            padding: 4px 12px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: var(--transition);
-            color: var(--text);
-        }
-        .lang-switch:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
         .nav-cta {
             background: var(--primary);
             color: #fff !important;
@@ -129,6 +115,31 @@
             .menu-toggle {
                 display: block;
             }
+        }
+
+        /* ===== 固定语言切换按钮（手机端可见） ===== */
+        .lang-toggle-fixed {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 9999;
+        }
+        .lang-toggle-fixed button {
+            background: rgba(255,255,255,0.92);
+            border: 1px solid #E5E7EB;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1A1A2E;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: var(--transition);
+        }
+        .lang-toggle-fixed button:hover {
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         /* ===== 通用标题 ===== */
@@ -1052,7 +1063,7 @@
             }
         }
 
-        /* ===== 语言切换样式 ===== */
+        /* ===== 语言切换通用样式 ===== */
         .lang-zh,
         .lang-en {
             transition: opacity 0.3s ease;
@@ -1064,6 +1075,11 @@
     </style>
 </head>
 <body>
+
+    <!-- ===== 固定语言切换按钮（手机端可见） ===== -->
+    <div class="lang-toggle-fixed">
+        <button onclick="toggleLanguage()" id="langToggleFixed">English</button>
+    </div>
 
     <!-- ===== 导航 ===== -->
     <nav class="navbar">
@@ -1085,7 +1101,6 @@
                 <a href="#innovation" class="lang-en hidden">Innovation</a>
                 <a href="#impact" class="lang-zh">社会价值</a>
                 <a href="#impact" class="lang-en hidden">Impact</a>
-                <button class="lang-switch" onclick="toggleLanguage()" id="langToggle">English</button>
                 <a href="#contact" class="nav-cta lang-zh">联系我们</a>
                 <a href="#contact" class="nav-cta lang-en hidden">Contact</a>
             </div>
@@ -1584,18 +1599,18 @@
         function toggleLanguage() {
             const zhElements = document.querySelectorAll('.lang-zh');
             const enElements = document.querySelectorAll('.lang-en');
-            const toggleBtn = document.getElementById('langToggle');
+            const toggleBtn = document.getElementById('langToggleFixed');
 
             if (currentLang === 'zh') {
                 zhElements.forEach(el => el.classList.add('hidden'));
                 enElements.forEach(el => el.classList.remove('hidden'));
-                toggleBtn.textContent = '中文';
+                if (toggleBtn) toggleBtn.textContent = '中文';
                 currentLang = 'en';
                 document.documentElement.lang = 'en';
             } else {
                 zhElements.forEach(el => el.classList.remove('hidden'));
                 enElements.forEach(el => el.classList.add('hidden'));
-                toggleBtn.textContent = 'English';
+                if (toggleBtn) toggleBtn.textContent = 'English';
                 currentLang = 'zh';
                 document.documentElement.lang = 'zh-CN';
             }
