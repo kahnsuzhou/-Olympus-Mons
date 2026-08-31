@@ -4,29 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>灵狐近选 · AI驱动社区即时零售</title>
-    <meta name="description" content="灵狐近选是一个以AI技术驱动的社区即时零售平台，首创移动闪电仓模式，实现最快2分钟送达。" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦊</text></svg>" />
     <style>
-        /* ===== 全局重置 ===== */
+        /* ===== 全局重置 & 变量 ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+            font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
             background: #FAFAFA;
             color: #1A1A2E;
             line-height: 1.6;
             scroll-behavior: smooth;
+            padding-top: 80px;
+            /* 固定导航留白 */;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
-
-        /* ===== 颜色变量 ===== */
         :root {
             --primary: #E86A2C;
             --primary-dark: #D45A1C;
@@ -39,6 +37,7 @@
             --shadow: 0 4px 24px rgba(0,0,0,0.06);
             --radius: 20px;
             --transition: all 0.3s ease;
+            --care-green: #008c87;
         }
 
         /* ===== 导航 ===== */
@@ -47,9 +46,9 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255,255,255,0.92);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
             z-index: 1000;
             padding: 16px 0;
         }
@@ -83,6 +82,10 @@
         .nav-links a:hover {
             color: var(--primary);
         }
+        .nav-links .active {
+            color: var(--primary);
+            font-weight: 600;
+        }
         .nav-cta {
             background: var(--primary);
             color: #fff !important;
@@ -101,7 +104,6 @@
             background: none;
             border: none;
         }
-
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -115,31 +117,6 @@
             .menu-toggle {
                 display: block;
             }
-        }
-
-        /* ===== 固定语言切换按钮（手机端可见） ===== */
-        .lang-toggle-fixed {
-            position: fixed;
-            top: 12px;
-            right: 12px;
-            z-index: 9999;
-        }
-        .lang-toggle-fixed button {
-            background: rgba(255,255,255,0.92);
-            border: 1px solid #E5E7EB;
-            border-radius: 20px;
-            padding: 6px 14px;
-            font-size: 13px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #1A1A2E;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: var(--transition);
-        }
-        .lang-toggle-fixed button:hover {
-            border-color: var(--primary);
-            color: var(--primary);
         }
 
         /* ===== 通用标题 ===== */
@@ -171,7 +148,7 @@
 
         /* ===== HERO ===== */
         .hero {
-            padding: 140px 0 80px;
+            padding: 40px 0 60px;
             background: linear-gradient(145deg, #FFFFFF 40%, #FFF5EE 100%);
         }
         .hero-grid {
@@ -181,7 +158,7 @@
             align-items: center;
         }
         .hero h1 {
-            font-size: 52px;
+            font-size: 48px;
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 20px;
@@ -250,7 +227,6 @@
             border-color: var(--primary);
             color: var(--primary);
         }
-
         .hero-visual {
             display: flex;
             justify-content: center;
@@ -263,8 +239,7 @@
             background: #1A1A2E;
             border-radius: 36px;
             padding: 12px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
         }
         .hero-phone .screen {
             width: 100%;
@@ -276,7 +251,6 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            color: var(--text);
             text-align: center;
         }
         .hero-phone .screen .emoji-big {
@@ -288,7 +262,7 @@
             font-size: 22px;
         }
         .hero-phone .screen .app-desc {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--text-light);
             margin-top: 4px;
         }
@@ -306,7 +280,7 @@
             background: #fff;
             border-radius: 16px;
             padding: 12px 18px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
             font-size: 13px;
             font-weight: 500;
             display: flex;
@@ -321,10 +295,6 @@
             bottom: -10px;
             right: -30px;
         }
-        .float-badge .icon {
-            font-size: 24px;
-        }
-
         @media (max-width: 768px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -339,34 +309,6 @@
             }
             .float-badge {
                 display: none;
-            }
-        }
-
-        /* ===== 数据条 ===== */
-        .data-bar {
-            background: var(--bg-white);
-            border-bottom: 1px solid #F3F4F6;
-            padding: 32px 0;
-        }
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            text-align: center;
-        }
-        .data-grid .num {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        .data-grid .label {
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
-        @media (max-width: 640px) {
-            .data-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -404,14 +346,13 @@
             color: var(--text-light);
             font-size: 15px;
         }
-
         @media (max-width: 768px) {
             .mode-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* ===== 产品与系统入口 ===== */
+        /* ===== 产品系统 ===== */
         .section-systems {
             padding: 80px 0;
             background: var(--bg-white);
@@ -454,12 +395,10 @@
             color: var(--primary);
             font-weight: 600;
             text-decoration: none;
-            display: inline-block;
         }
         .system-link:hover {
             text-decoration: underline;
         }
-
         @media (max-width: 768px) {
             .systems-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -471,10 +410,62 @@
             }
         }
 
-        /* ===== 行业新闻 ===== */
-        .section-news {
+        /* ===== 百应守护模块 ===== */
+        .section-care {
             padding: 80px 0;
             background: var(--bg-gray);
+        }
+        .care-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+        .care-card {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--care-green);
+            transition: var(--transition);
+        }
+        .care-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+        }
+        .care-card .icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+        .care-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .care-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+        .care-card .btn-sm {
+            color: var(--care-green);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .care-card .btn-sm:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .care-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== 新闻动态 ===== */
+        .section-news {
+            padding: 80px 0;
+            background: var(--bg-white);
         }
         .news-grid {
             display: grid;
@@ -483,18 +474,17 @@
             margin-bottom: 40px;
         }
         .news-card {
-            background: var(--bg-white);
+            background: var(--bg-gray);
             border-radius: var(--radius);
             padding: 28px 24px;
             box-shadow: var(--shadow);
-            transition: var(--transition);
             border-left: 4px solid var(--primary);
+            transition: var(--transition);
             cursor: pointer;
-            position: relative;
         }
         .news-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
         }
         .news-card.featured {
             border-left: 4px solid #FF6B35;
@@ -507,7 +497,6 @@
             padding: 2px 12px;
             border-radius: 40px;
             margin-left: 8px;
-            vertical-align: middle;
         }
         .news-tag-hot {
             background: #FF6B35;
@@ -522,13 +511,11 @@
             font-size: 17px;
             font-weight: 700;
             margin-bottom: 8px;
-            line-height: 1.4;
         }
         .news-card p {
             font-size: 14px;
             color: var(--text-light);
             margin-bottom: 12px;
-            line-height: 1.6;
         }
         .news-link {
             color: var(--primary);
@@ -536,434 +523,11 @@
             text-decoration: none;
             font-size: 14px;
         }
-        .news-link:hover {
-            text-decoration: underline;
-        }
         .news-more {
             text-align: center;
         }
-
         @media (max-width: 768px) {
             .news-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== 新闻弹窗 ===== */
-        .news-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-        }
-        .news-modal.show {
-            display: flex;
-        }
-        .news-modal-content {
-            background: #fff;
-            max-width: 700px;
-            width: 90%;
-            max-height: 85vh;
-            border-radius: 20px;
-            padding: 40px;
-            overflow-y: auto;
-            position: relative;
-        }
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 24px;
-            font-size: 32px;
-            cursor: pointer;
-            color: #999;
-            border: none;
-            background: none;
-        }
-        .modal-close:hover {
-            color: #333;
-        }
-
-        /* ===== 近选社区书房 ===== */
-        .section-library {
-            padding: 80px 0;
-            background: var(--bg-white);
-        }
-        .library-image {
-            border-radius: var(--radius);
-            overflow: hidden;
-            margin-bottom: 24px;
-        }
-        .library-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            aspect-ratio: 21/7;
-            object-fit: cover;
-        }
-        .library-showcase {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin: 24px 0 40px;
-        }
-        .library-showcase-item {
-            border-radius: 12px;
-            overflow: hidden;
-            background: var(--bg-gray);
-        }
-        .library-showcase-item img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-            display: block;
-        }
-        .library-showcase-item p {
-            padding: 8px 12px 12px;
-            font-size: 14px;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .library-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: start;
-        }
-        .library-features {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            margin-bottom: 32px;
-        }
-        .library-feature {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-        }
-        .feature-icon {
-            font-size: 28px;
-            flex-shrink: 0;
-        }
-        .library-feature h4 {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        .library-feature p {
-            font-size: 14px;
-            color: var(--text-light);
-        }
-        .library-stats {
-            display: flex;
-            gap: 32px;
-            padding: 16px 0;
-            border-top: 1px solid #E5E7EB;
-            font-size: 14px;
-            color: var(--text-light);
-        }
-        .library-stats span {
-            font-weight: 500;
-        }
-
-        .library-form {
-            background: var(--bg-gray);
-            border-radius: var(--radius);
-            padding: 32px 28px;
-        }
-        .library-form h4 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        .library-form input,
-        .library-form select,
-        .library-form textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #E5E7EB;
-            border-radius: 12px;
-            font-size: 15px;
-            margin-bottom: 14px;
-            background: #fff;
-            font-family: inherit;
-        }
-        .library-form input:focus,
-        .library-form select:focus,
-        .library-form textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        .library-form textarea {
-            resize: vertical;
-        }
-        .form-tip {
-            font-size: 13px;
-            color: var(--text-light);
-            text-align: center;
-            margin-top: 12px;
-        }
-
-        @media (max-width: 768px) {
-            .library-grid {
-                grid-template-columns: 1fr;
-            }
-            .library-showcase {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== 百米首发 ===== */
-        .section-brandhub {
-            padding: 80px 0;
-            background: var(--bg-gray);
-        }
-        .brandhub-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin: 40px 0;
-        }
-        .brandhub-stat-card {
-            background: var(--bg-white);
-            border-radius: var(--radius);
-            padding: 32px 24px;
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-        .stat-number {
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--primary);
-        }
-        .stat-number small {
-            font-size: 18px;
-            font-weight: 400;
-            color: var(--text-light);
-        }
-        .stat-label {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 8px 0;
-        }
-        .brandhub-stat-card p {
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
-        .brandhub-process {
-            padding: 40px 0;
-            text-align: center;
-        }
-        .brandhub-process h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 32px;
-        }
-        .process-steps {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .step-item {
-            text-align: center;
-            min-width: 100px;
-        }
-        .step-num {
-            display: inline-block;
-            background: var(--primary);
-            color: #fff;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            font-weight: 700;
-            font-size: 16px;
-        }
-        .step-item h4 {
-            font-size: 15px;
-            font-weight: 600;
-            margin: 8px 0 4px;
-        }
-        .step-item p {
-            font-size: 13px;
-            color: var(--text-light);
-        }
-        .step-arrow {
-            font-size: 24px;
-            color: var(--text-light);
-        }
-
-        .brandhub-value {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin: 40px 0;
-            padding: 40px 0;
-            border-top: 1px solid #E5E7EB;
-            border-bottom: 1px solid #E5E7EB;
-        }
-        .value-item {
-            text-align: center;
-        }
-        .value-icon {
-            font-size: 32px;
-            display: block;
-            margin-bottom: 8px;
-        }
-        .value-item h4 {
-            font-size: 16px;
-            font-weight: 600;
-        }
-        .value-item p {
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
-        .brandhub-form {
-            max-width: 560px;
-            margin: 40px auto;
-            background: var(--bg-white);
-            border-radius: var(--radius);
-            padding: 40px 32px;
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-        .brandhub-form h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        .brandhub-form input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #E5E7EB;
-            border-radius: 12px;
-            font-size: 15px;
-            margin-bottom: 14px;
-            background: #f9fafb;
-        }
-        .brandhub-form input:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        .brandhub-form .btn-primary {
-            width: 100%;
-            text-align: center;
-        }
-
-        .brandhub-cta {
-            text-align: center;
-            padding: 20px 0 0;
-        }
-        .brandhub-cta p {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 16px;
-        }
-        .brandhub-cta .btn-primary {
-            padding: 14px 48px;
-            font-size: 18px;
-        }
-
-        @media (max-width: 768px) {
-            .brandhub-stats {
-                grid-template-columns: 1fr;
-            }
-            .brandhub-value {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .process-steps {
-                flex-direction: column;
-            }
-            .step-arrow {
-                transform: rotate(90deg);
-            }
-        }
-
-        /* ===== 创新亮点 ===== */
-        .section-innovation {
-            padding: 80px 0;
-            background: var(--bg-white);
-        }
-        .innovation-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-        .innovation-item {
-            background: var(--bg-gray);
-            border-radius: var(--radius);
-            padding: 28px 32px;
-            box-shadow: var(--shadow);
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-        .innovation-item .icon {
-            font-size: 32px;
-            flex-shrink: 0;
-            margin-top: 4px;
-        }
-        .innovation-item h4 {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        .innovation-item p {
-            font-size: 14px;
-            color: var(--text-light);
-        }
-
-        @media (max-width: 640px) {
-            .innovation-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== 社会价值 ===== */
-        .section-impact {
-            padding: 80px 0;
-            background: var(--bg-white);
-        }
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-        .impact-card {
-            text-align: center;
-            padding: 32px 20px;
-            border-radius: var(--radius);
-            background: var(--bg-gray);
-        }
-        .impact-card .num {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--secondary);
-        }
-        .impact-card .desc {
-            font-size: 14px;
-            color: var(--text-light);
-            margin-top: 4px;
-        }
-
-        @media (max-width: 768px) {
-            .impact-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 480px) {
-            .impact-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -1001,13 +565,13 @@
         }
         .section-cta .btn-white:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
 
         /* ===== 页脚 ===== */
         footer {
             background: #1A1A2E;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
             padding: 48px 0 32px;
         }
         footer .container {
@@ -1030,7 +594,7 @@
             flex-wrap: wrap;
         }
         footer .links a {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
             font-size: 14px;
         }
@@ -1041,20 +605,6 @@
             font-size: 13px;
             margin-top: 8px;
         }
-        .icp {
-            font-size: 13px;
-            color: rgba(255,255,255,0.4);
-            margin-top: 8px;
-        }
-        .icp a {
-            color: rgba(255,255,255,0.4);
-            text-decoration: none;
-        }
-        .icp a:hover {
-            color: rgba(255,255,255,0.7);
-            text-decoration: underline;
-        }
-
         @media (max-width: 640px) {
             footer .container {
                 flex-direction: column;
@@ -1062,24 +612,9 @@
                 text-align: center;
             }
         }
-
-        /* ===== 语言切换通用样式 ===== */
-        .lang-zh,
-        .lang-en {
-            transition: opacity 0.3s ease;
-        }
-        .lang-zh.hidden,
-        .lang-en.hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
-
-    <!-- ===== 固定语言切换按钮（手机端可见） ===== -->
-    <div class="lang-toggle-fixed">
-        <button onclick="toggleLanguage()" id="langToggleFixed">English</button>
-    </div>
 
     <!-- ===== 导航 ===== -->
     <nav class="navbar">
@@ -1087,22 +622,11 @@
             <div class="logo">灵狐<span>近选</span></div>
             <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
             <div class="nav-links">
-                <a href="#mode" class="lang-zh">核心模式</a>
-                <a href="#mode" class="lang-en hidden">Core Model</a>
-                <a href="#systems" class="lang-zh">产品系统</a>
-                <a href="#systems" class="lang-en hidden">Products</a>
-                <a href="#news" class="lang-zh">项目动态</a>
-                <a href="#news" class="lang-en hidden">News</a>
-                <a href="#library" class="lang-zh">近选社区书房</a>
-                <a href="#library" class="lang-en hidden">Community Library</a>
-                <a href="#brandhub" class="lang-zh">百米首发</a>
-                <a href="#brandhub" class="lang-en hidden">100m Launch</a>
-                <a href="#innovation" class="lang-zh">创新亮点</a>
-                <a href="#innovation" class="lang-en hidden">Innovation</a>
-                <a href="#impact" class="lang-zh">社会价值</a>
-                <a href="#impact" class="lang-en hidden">Impact</a>
-                <a href="#contact" class="nav-cta lang-zh">联系我们</a>
-                <a href="#contact" class="nav-cta lang-en hidden">Contact</a>
+                <a href="#mode">核心模式</a>
+                <a href="#systems">产品系统</a>
+                <a href="#care">百应守护</a>
+                <a href="#news">项目动态</a>
+                <a href="#contact" class="nav-cta">联系我们</a>
             </div>
         </div>
     </nav>
@@ -1113,24 +637,15 @@
             <div class="hero-grid">
                 <div>
                     <div class="hero-badges">
-                        <span class="badge lang-zh">🚀 AI驱动</span>
-                        <span class="badge lang-en hidden">🚀 AI-Powered</span>
-                        <span class="badge lang-zh">⚡ 最快2分钟达</span>
-                        <span class="badge lang-en hidden">⚡ 2-Min Delivery</span>
-                        <span class="badge lang-zh">🌱 社区零碳</span>
-                        <span class="badge lang-en hidden">🌱 Zero Carbon</span>
-                        <span class="badge lang-zh">🏢 零界魔方入驻</span>
-                        <span class="badge lang-en hidden">🏢 ZeroCube Member</span>
+                        <span class="badge">🚀 AI驱动</span>
+                        <span class="badge">⚡ 最快10分钟达</span>
+                        <span class="badge">🏢 零界魔方入驻</span>
                     </div>
-                    <h1 class="lang-zh">社区即时零售的<br><span class="highlight">“移动闪电仓”</span></h1>
-                    <h1 class="lang-en hidden">Community Instant Retail<br><span class="highlight">"Mobile Flash Warehouse"</span></h1>
-                    <p class="lang-zh">用AI调度云仓，用移动仓触达邻里，定义即时零售新范式。</p>
-                    <p class="lang-en hidden">AI-powered cloud warehouses reaching every neighborhood — redefining instant retail.</p>
+                    <h1>社区即时零售的<br><span class="highlight">“10分钟送达”</span></h1>
+                    <p>用AI调度云仓，用社区仓主网络触达邻里，重新定义社区即时零售的效率。</p>
                     <div class="hero-cta">
-                        <a href="#contact" class="btn-primary lang-zh">合作咨询</a>
-                        <a href="#contact" class="btn-primary lang-en hidden">Contact Us</a>
-                        <a href="#mode" class="btn-outline lang-zh">了解更多 ↓</a>
-                        <a href="#mode" class="btn-outline lang-en hidden">Learn More ↓</a>
+                        <a href="#contact" class="btn-primary">合作咨询</a>
+                        <a href="#mode" class="btn-outline">了解更多 ↓</a>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -1138,27 +653,13 @@
                         <div class="screen">
                             <div class="emoji-big">🦊</div>
                             <div class="app-name">灵狐近选</div>
-                            <div class="app-desc lang-zh">AI · 社区 · 2分钟达</div>
-                            <div class="app-desc lang-en hidden">AI · Community · 2-Min</div>
-                            <div class="time-badge lang-zh">⏱️ 最快 2 分钟送达</div>
-                            <div class="time-badge lang-en hidden">⏱️ 2-Min Delivery</div>
+                            <div class="app-desc">AI · 社区 · 10分钟达</div>
+                            <div class="time-badge">⏱️ 最快 10 分钟送达</div>
                         </div>
                     </div>
-                    <div class="float-badge tl"><span class="icon">📦</span> <span class="lang-zh">社区云仓</span><span class="lang-en hidden">Cloud Warehouse</span></div>
-                    <div class="float-badge br"><span class="icon">🧠</span> <span class="lang-zh">AI调度</span><span class="lang-en hidden">AI Dispatch</span></div>
+                    <div class="float-badge tl"><span>📦</span> 社区云仓</div>
+                    <div class="float-badge br"><span>🧠</span> AI调度</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 数据条 ===== -->
-    <section class="data-bar">
-        <div class="container">
-            <div class="data-grid">
-                <div><div class="num">2026</div><div class="label lang-zh">即时零售突破1万亿</div><div class="label lang-en hidden">Instant Retail ¥1T</div></div>
-                <div><div class="num">2-5万</div><div class="label lang-zh">单仓启动成本</div><div class="label lang-en hidden">Startup Cost</div></div>
-                <div><div class="num">2-3元</div><div class="label lang-zh">单均履约成本</div><div class="label lang-en hidden">Fulfillment Cost</div></div>
-                <div><div class="num">2分钟</div><div class="label lang-zh">极致送达时效</div><div class="label lang-en hidden">Delivery Time</div></div>
             </div>
         </div>
     </section>
@@ -1166,387 +667,122 @@
     <!-- ===== 核心模式 ===== -->
     <section class="section-mode" id="mode">
         <div class="container">
-            <div class="section-tag lang-zh">核心模式</div>
-            <div class="section-tag lang-en hidden">Core Model</div>
-            <h2 class="section-title lang-zh">如何做到“2分钟送达”</h2>
-            <h2 class="section-title lang-en hidden">"2-Minute Delivery" — How It Works</h2>
-            <p class="section-sub lang-zh">灵狐近选通过三重新模式，重构社区即时零售的履约链路</p>
-            <p class="section-sub lang-en hidden">Three innovations reshaping community instant retail fulfillment</p>
+            <div class="section-tag">核心模式</div>
+            <h2 class="section-title">如何做到“10分钟送达”</h2>
+            <p class="section-sub">灵狐近选通过三重新模式，重构社区即时零售的履约链路</p>
             <div class="mode-grid">
                 <div class="mode-card">
-                    <div class="icon">🚛</div>
-                    <h3 class="lang-zh">移动闪电仓</h3>
-                    <h3 class="lang-en hidden">Mobile Flash Warehouse</h3>
-                    <p class="lang-zh">面包车/房车停放在小区内，作为移动前置仓，商品已在楼下，下单即达。</p>
-                    <p class="lang-en hidden">Vans parked in communities as mobile micro-warehouses — goods are already downstairs, ready for instant pickup.</p>
-                    <p style="font-size:13px;color:var(--primary);font-weight:600;margin-top:8px;" class="lang-zh">单仓成本 2-5 万元</p>
-                    <p style="font-size:13px;color:var(--primary);font-weight:600;margin-top:8px;" class="lang-en hidden">Startup Cost ¥20K-50K</p>
+                    <div class="icon">🏠</div>
+                    <h3>社区仓主网络</h3>
+                    <p>宝妈、退休人员、便利店店主利用社区闲置空间成为仓主，按单赚服务费，邻里信任即履约保障。</p>
                 </div>
                 <div class="mode-card">
                     <div class="icon">🧠</div>
-                    <h3 class="lang-zh">AI预见性供应链</h3>
-                    <h3 class="lang-en hidden">AI Predictive Supply Chain</h3>
-                    <p class="lang-zh">基于用户搜索、浏览行为，在用户下单前将商品预铺至社区云仓，实现“货找人”。</p>
-                    <p class="lang-en hidden">Pre-positioning inventory based on search & browsing behavior — "goods finding people" before they even order.</p>
-                    <p style="font-size:13px;color:var(--secondary);font-weight:600;margin-top:8px;" class="lang-zh">缺货率降低 67%</p>
-                    <p style="font-size:13px;color:var(--secondary);font-weight:600;margin-top:8px;" class="lang-en hidden">Stockout Rate -67%</p>
+                    <h3>AI预见性供应链</h3>
+                    <p>基于用户搜索、浏览行为，在用户下单前将商品预铺至社区云仓，实现“货找人”。</p>
                 </div>
                 <div class="mode-card">
                     <div class="icon">🤝</div>
-                    <h3 class="lang-zh">仓主即邻居</h3>
-                    <h3 class="lang-en hidden">Neighbor as Warehouse Owner</h3>
-                    <p class="lang-zh">宝妈、退休人员用闲置空间成为仓主，按单赚服务费，邻里信任即履约保障。</p>
-                    <p class="lang-en hidden">Stay-at-home parents and retirees use idle space as warehouses, earning per-order service fees — trust is the guarantee.</p>
-                    <p style="font-size:13px;color:var(--text-light);font-weight:600;margin-top:8px;" class="lang-zh">0 租金 · 0 库存</p>
-                    <p style="font-size:13px;color:var(--text-light);font-weight:600;margin-top:8px;" class="lang-en hidden">Zero Rent · Zero Inventory</p>
+                    <h3>仓主即邻居</h3>
+                    <p>0租金 · 0库存 · 按单结算，让社区闲置资源成为即时零售的基础设施。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== 产品与系统入口 ===== -->
+    <!-- ===== 产品与系统 ===== -->
     <section class="section-systems" id="systems">
         <div class="container">
-            <div class="section-tag lang-zh">产品与系统</div>
-            <div class="section-tag lang-en hidden">Products & Systems</div>
-            <h2 class="section-title lang-zh">灵狐近选 · 全场景服务矩阵</h2>
-            <h2 class="section-title lang-en hidden">Linghu · Full-Service Matrix</h2>
-            <p class="section-sub lang-zh">面向品牌方、仓主、消费者与运营者的完整产品体系</p>
-            <p class="section-sub lang-en hidden">Complete product system for brands, warehouse operators, consumers & administrators</p>
+            <div class="section-tag">产品与系统</div>
+            <h2 class="section-title">灵狐近选 · 全场景服务矩阵</h2>
+            <p class="section-sub">面向品牌方、仓主、消费者与运营者的完整产品体系</p>
             <div class="systems-grid">
                 <div class="system-card">
                     <div class="system-icon">🏢</div>
-                    <h3 class="lang-zh">灵狐品牌通</h3>
-                    <h3 class="lang-en hidden">Linghu Brand Portal</h3>
-                    <p class="lang-zh">品牌方一站式管理平台：商品上架、铺货计划、外单通、AI数据看板</p>
-                    <p class="lang-en hidden">One-stop platform for brands: product listing, inventory planning, cross-channel fulfillment, AI dashboard</p>
-                    <a href="http://124.222.132.208/" class="system-link" target="_blank" class="lang-zh">进入品牌通 →</a>
-                    <a href="http://124.222.132.208/" class="system-link" target="_blank" class="lang-en hidden">Enter →</a>
+                    <h3>品牌通</h3>
+                    <p>品牌方一站式管理：商品上架、铺货计划、外单通、AI数据看板</p>
+                    <a href="http://124.222.132.208/" class="system-link" target="_blank">进入品牌通 →</a>
                 </div>
                 <div class="system-card">
                     <div class="system-icon">🧠</div>
-                    <h3 class="lang-zh">灵狐大脑</h3>
-                    <h3 class="lang-en hidden">Linghu Brain</h3>
-                    <p class="lang-zh">平台运营中台：全平台监控、资产发行、交易撮合、智能风控</p>
-                    <p class="lang-en hidden">Operations center: platform monitoring, asset issuance, transaction matching, intelligent risk control</p>
-                    <a href="http://124.222.132.208/brain/#/dashboard" class="system-link" target="_blank" class="lang-zh">进入灵狐大脑 →</a>
-                    <a href="http://124.222.132.208/brain/#/dashboard" class="system-link" target="_blank" class="lang-en hidden">Enter →</a>
+                    <h3>灵狐大脑</h3>
+                    <p>平台运营中台：全平台监控、资产发行、交易撮合、智能风控</p>
+                    <a href="http://124.222.132.208/brain/#/dashboard" class="system-link" target="_blank">进入大脑 →</a>
                 </div>
                 <div class="system-card">
                     <div class="system-icon">📱</div>
-                    <h3 class="lang-zh">一百米APP</h3>
-                    <h3 class="lang-en hidden">100m APP</h3>
-                    <p class="lang-zh">消费者端：最快2分钟送达，社区好物即时购</p>
-                    <p class="lang-en hidden">Consumer app: 2-minute delivery, instant community shopping</p>
-                    <a href="http://124.222.132.208/" class="system-link" target="_blank" class="lang-zh">下载APP →</a>
-                    <a href="http://124.222.132.208/" class="system-link" target="_blank" class="lang-en hidden">Download →</a>
+                    <h3>一百米APP</h3>
+                    <p>消费者端：最快10分钟送达，社区好物即时购</p>
+                    <a href="http://124.222.132.208/" class="system-link" target="_blank">下载APP →</a>
                 </div>
                 <div class="system-card">
                     <div class="system-icon">📦</div>
-                    <h3 class="lang-zh">灵狐掌柜</h3>
-                    <h3 class="lang-en hidden">Linghu Store Manager</h3>
-                    <p class="lang-zh">仓主端作业工具：接单、拣货、核销、收益提现一站式完成</p>
-                    <p class="lang-en hidden">Warehouse operator tool: order receiving, picking, redemption, earnings withdrawal</p>
-                    <a href="http://124.222.132.208/" class="system-link" target="_blank" class="lang-zh">进入灵狐掌柜 →</a>
-                    <a href="http://124.222.132.208/" class="system-link" target="_blank" class="lang-en hidden">Enter →</a>
+                    <h3>灵狐掌柜</h3>
+                    <p>仓主端作业工具：接单、拣货、核销、收益提现一站式完成</p>
+                    <a href="http://124.222.132.208/" class="system-link" target="_blank">进入灵狐掌柜 →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== 行业新闻 ===== -->
+    <!-- ===== 百应守护（一老一小） ===== -->
+    <section class="section-care" id="care">
+        <div class="container">
+            <div class="section-tag">百应守护</div>
+            <h2 class="section-title">有求<span style="color:var(--primary);">百应</span> · 邻里共暖</h2>
+            <p class="section-sub">将“10分钟送达”的履约能力延伸至“一老一小”关爱服务，让社区商业更有温度。</p>
+            <div class="care-grid">
+                <div class="care-card">
+                    <div class="icon">👵</div>
+                    <h4>社区助老</h4>
+                    <p>仓主代买生活用品、药品、生鲜果蔬，10分钟送到家门口。支持现金代付、亲情账户绑定。</p>
+                    <a href="care.html" class="btn-sm">查看「银发食谱」→</a>
+                </div>
+                <div class="care-card">
+                    <div class="icon">🧒</div>
+                    <h4>社区护幼</h4>
+                    <p>社区书房提供四点半课堂、亲子活动、儿童安全守护，仓主兼任“社区辅导员”。</p>
+                    <a href="care.html" class="btn-sm">了解更多 →</a>
+                </div>
+                <div class="care-card">
+                    <div class="icon">📱</div>
+                    <h4>银龄数字课堂</h4>
+                    <p>仓主兼任“数字助老员”，手把手教老年人使用手机支付、预约挂号、视频通话。</p>
+                    <a href="care.html" class="btn-sm">了解更多 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 新闻动态 ===== -->
     <section class="section-news" id="news">
         <div class="container">
-            <div class="section-tag lang-zh">项目动态</div>
-            <div class="section-tag lang-en hidden">Project Updates</div>
-            <h2 class="section-title lang-zh">灵狐近选 · 最新进展</h2>
-            <h2 class="section-title lang-en hidden">Latest Updates</h2>
-            <p class="section-sub lang-zh">从临港零界魔方出发，用AI连接每一个社区</p>
-            <p class="section-sub lang-en hidden">From ZeroCube Lingang to every community — connecting neighborhoods with AI</p>
+            <div class="section-tag">项目动态</div>
+            <h2 class="section-title">灵狐近选 · 最新进展</h2>
+            <p class="section-sub">从临港零界魔方出发，用AI连接每一个社区</p>
             <div class="news-grid">
-                <div class="news-card featured" onclick="openNewsModal(0)">
+                <div class="news-card featured">
                     <div class="news-date">2026.07.16</div>
-                    <span class="news-tag news-tag-hot lang-zh">🔥 最新</span>
-                    <span class="news-tag news-tag-hot lang-en hidden">🔥 Latest</span>
-                    <h3 class="lang-zh">灵狐近选成功入驻零界魔方，获评OPC标杆项目</h3>
-                    <h3 class="lang-en hidden">Linghu Joins ZeroCube, Named OPC Benchmark Project</h3>
-                    <p class="lang-zh">项目正式通过审核，入驻临港零界魔方OPC社区，获评“超级个体（OPC）标杆项目”。零界魔方由上海国资委旗下临港集团运营，已吸引超180个创业项目入驻，集聚人才超730人。</p>
-                    <p class="lang-en hidden">Linghu has officially joined ZeroCube OPC Community in Lingang, recognized as a benchmark OPC project. ZeroCube is operated by Lingang Group under the Shanghai State-owned Assets Supervision and Administration Commission, with 180+ startups and 730+ talents.</p>
-                    <span class="news-link lang-zh">阅读全文 →</span>
-                    <span class="news-link lang-en hidden">Read More →</span>
+                    <span class="news-tag news-tag-hot">🔥 最新</span>
+                    <h3>灵狐近选成功入驻零界魔方，获评OPC标杆项目</h3>
+                    <p>项目正式通过审核，入驻临港零界魔方OPC社区，获评“超级个体（OPC）标杆项目”。</p>
+                    <span class="news-link">阅读全文 →</span>
                 </div>
-                <div class="news-card" onclick="openNewsModal(1)">
+                <div class="news-card">
                     <div class="news-date">2026.06.28</div>
-                    <h3 class="lang-zh">商务部：即时零售已成为零售业增长新动能</h3>
-                    <h3 class="lang-en hidden">Ministry: Instant Retail Becomes New Growth Engine</h3>
-                    <p class="lang-zh">2025年即时零售市场规模达9714亿元，预计2026年突破1万亿元...</p>
-                    <p class="lang-en hidden">2025 instant retail market reached ¥971.4B, expected to exceed ¥1T in 2026...</p>
-                    <span class="news-link lang-zh">阅读全文 →</span>
-                    <span class="news-link lang-en hidden">Read More →</span>
+                    <h3>商务部：即时零售已成为零售业增长新动能</h3>
+                    <p>2025年即时零售市场规模达9714亿元，预计2026年突破1万亿元。</p>
+                    <span class="news-link">阅读全文 →</span>
                 </div>
-                <div class="news-card" onclick="openNewsModal(2)">
+                <div class="news-card">
                     <div class="news-date">2026.06.25</div>
-                    <h3 class="lang-zh">社区商业“一刻钟便民生活圈”建设加速推进</h3>
-                    <h3 class="lang-en hidden">"15-Minute Community Life Circle" Accelerates</h3>
-                    <p class="lang-zh">全国已建设近4000个一刻钟便民生活圈，社区商业配套持续完善...</p>
-                    <p class="lang-en hidden">Nearly 4,000 "15-minute community life circles" built nationwide...</p>
-                    <span class="news-link lang-zh">阅读全文 →</span>
-                    <span class="news-link lang-en hidden">Read More →</span>
+                    <h3>社区商业“一刻钟便民生活圈”建设加速推进</h3>
+                    <p>全国已建设近4000个一刻钟便民生活圈，社区商业配套持续完善。</p>
+                    <span class="news-link">阅读全文 →</span>
                 </div>
             </div>
             <div class="news-more">
-                <a href="#" class="btn-outline lang-zh">查看更多新闻 →</a>
-                <a href="#" class="btn-outline lang-en hidden">More News →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 新闻弹窗 ===== -->
-    <div class="news-modal" id="newsModal">
-        <div class="news-modal-content">
-            <button class="modal-close" onclick="closeNewsModal()">×</button>
-            <div id="modalBody"></div>
-        </div>
-    </div>
-
-    <!-- ===== 近选社区书房 ===== -->
-    <section class="section-library" id="library">
-        <div class="container">
-            <div class="section-tag lang-zh">社区共建</div>
-            <div class="section-tag lang-en hidden">Community Building</div>
-            <h2 class="section-title lang-zh">近选社区书房 · 你家楼下的共享书房</h2>
-            <h2 class="section-title lang-en hidden">Jinxuan Community Library · Your Downstairs Shared Library</h2>
-            <p class="section-sub lang-zh">用闲置空间换社区温度，让阅读触手可及</p>
-            <p class="section-sub lang-en hidden">Turning idle spaces into community warmth — reading at your doorstep</p>
-
-            <div class="library-image">
-                <img src="https://picsum.photos/seed/library2024/1200/400" alt="近选社区书房" />
-            </div>
-            <div class="library-showcase">
-                <div class="library-showcase-item">
-                    <img src="https://picsum.photos/seed/books/400/300" alt="邻里共享书架" />
-                    <p class="lang-zh">📚 邻里共享书架</p>
-                    <p class="lang-en hidden">📚 Shared Bookshelf</p>
-                </div>
-                <div class="library-showcase-item">
-                    <img src="https://picsum.photos/seed/reading/400/300" alt="阅读空间" />
-                    <p class="lang-zh">🛋️ 安静阅读角</p>
-                    <p class="lang-en hidden">🛋️ Reading Corner</p>
-                </div>
-                <div class="library-showcase-item">
-                    <img src="https://picsum.photos/seed/children/400/300" alt="亲子阅读区" />
-                    <p class="lang-zh">🧒 亲子阅读区</p>
-                    <p class="lang-en hidden">🧒 Kids Reading Zone</p>
-                </div>
-            </div>
-
-            <div class="library-grid">
-                <div class="library-intro">
-                    <div class="library-features">
-                        <div class="library-feature">
-                            <span class="feature-icon">📚</span>
-                            <div>
-                                <h4 class="lang-zh">0成本加入</h4>
-                                <h4 class="lang-en hidden">Zero-Cost Participation</h4>
-                                <p class="lang-zh">灵狐近选提供图书资源、系统支持、运营指导，你只需提供场地</p>
-                                <p class="lang-en hidden">Linghu provides books, system support, and operational guidance — you provide the space</p>
-                            </div>
-                        </div>
-                        <div class="library-feature">
-                            <span class="feature-icon">🤝</span>
-                            <div>
-                                <h4 class="lang-zh">积分权益互通</h4>
-                                <h4 class="lang-en hidden">Integrated Points System</h4>
-                                <p class="lang-zh">书房与灵狐近选消费积分打通，用户借阅即消费，消费即借阅</p>
-                                <p class="lang-en hidden">Library points connected to Linghu shopping points — borrowing is spending, spending is borrowing</p>
-                            </div>
-                        </div>
-                        <div class="library-feature">
-                            <span class="feature-icon">🏠</span>
-                            <div>
-                                <h4 class="lang-zh">社区文化新地标</h4>
-                                <h4 class="lang-en hidden">New Community Cultural Landmark</h4>
-                                <p class="lang-zh">提升仓主/点位猎人的社区影响力，成为邻里文化中心</p>
-                                <p class="lang-en hidden">Elevates warehouse owners' community influence — becoming a neighborhood cultural hub</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="library-stats">
-                        <span>📖 <span class="lang-zh">已开放 0 家</span><span class="lang-en hidden">0 Open</span></span>
-                        <span>📍 <span class="lang-zh">覆盖 0 个社区</span><span class="lang-en hidden">0 Communities</span></span>
-                        <span>👥 <span class="lang-zh">服务 0 位居民</span><span class="lang-en hidden">0 Residents Served</span></span>
-                    </div>
-                </div>
-
-                <div class="library-form">
-                    <h4 class="lang-zh">申请加入近选社区书房</h4>
-                    <h4 class="lang-en hidden">Apply to Join Jinxuan Community Library</h4>
-                    <form id="libraryApplyForm" action="http://124.222.132.208/api/library/apply" method="POST">
-                        <input type="text" name="name" placeholder="您的姓名 / Your Name" required />
-                        <input type="tel" name="phone" placeholder="手机号 / Phone" required />
-                        <input type="text" name="community" placeholder="所在小区名称 / Community" required />
-                        <input type="text" name="address" placeholder="拟设书房地址 / Address" required />
-                        <input type="number" name="area" placeholder="可用面积（平方米）/ Area (sqm)" required />
-                        <select name="space_type" required>
-                            <option value=""><span class="lang-zh">空间类型</span><span class="lang-en hidden">Space Type</span></option>
-                            <option value="云仓"><span class="lang-zh">云仓空闲区域</span><span class="lang-en hidden">Cloud Warehouse</span></option>
-                            <option value="住宅"><span class="lang-zh">住宅/车库</span><span class="lang-en hidden">Residential/Garage</span></option>
-                            <option value="店铺"><span class="lang-zh">店铺/商业空间</span><span class="lang-en hidden">Store/Commercial</span></option>
-                            <option value="物业用房"><span class="lang-zh">物业用房</span><span class="lang-en hidden">Property Space</span></option>
-                            <option value="其他"><span class="lang-zh">其他</span><span class="lang-en hidden">Other</span></option>
-                        </select>
-                        <textarea name="remark" placeholder="补充说明（可选）/ Remarks (Optional)" rows="2"></textarea>
-                        <button type="submit" class="btn-primary" style="width:100%;text-align:center;"><span class="lang-zh">提交申请</span><span class="lang-en hidden">Submit</span></button>
-                    </form>
-                    <p class="form-tip"><span class="lang-zh">提交后，工作人员将在3个工作日内联系您</span><span class="lang-en hidden">We'll respond within 3 working days</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 百米首发 ===== -->
-    <section class="section-brandhub" id="brandhub">
-        <div class="container">
-            <div class="section-tag lang-zh">灵狐近选 · 百米首发</div>
-            <div class="section-tag lang-en hidden">Linghu · 100m Launch</div>
-            <h2 class="section-title lang-zh">首发就在家门口</h2>
-            <h2 class="section-title lang-en hidden">Launch at Your Doorstep</h2>
-            <p class="section-sub lang-zh">灵狐近选 · 百米首发体验馆，把首发放在离用户最近的地方</p>
-            <p class="section-sub lang-en hidden">Linghu · 100m Launch Experience — bringing launches closest to users</p>
-
-            <div class="brandhub-stats">
-                <div class="brandhub-stat-card">
-                    <div class="stat-number">100<small><span class="lang-zh">元/天</span><span class="lang-en hidden">/day</span></small></div>
-                    <div class="stat-label"><span class="lang-zh">百米首发 · 极速入驻</span><span class="lang-en hidden">Launch · Instant Setup</span></div>
-                    <p><span class="lang-zh">低成本试水，首发门槛降低90%</span><span class="lang-en hidden">Low-cost trial, 90% lower barrier</span></p>
-                </div>
-                <div class="brandhub-stat-card">
-                    <div class="stat-number">10<small><span class="lang-zh">分钟</span><span class="lang-en hidden">min</span></small></div>
-                    <div class="stat-label"><span class="lang-zh">百米首发 · 即租即用</span><span class="lang-en hidden">Launch · Ready to Use</span></div>
-                    <p><span class="lang-zh">拎包入驻，无需装修筹备</span><span class="lang-en hidden">Turnkey setup, no renovation needed</span></p>
-                </div>
-                <div class="brandhub-stat-card">
-                    <div class="stat-number">48<small><span class="lang-zh">小时</span><span class="lang-en hidden">hrs</span></small></div>
-                    <div class="stat-label"><span class="lang-zh">百米首发 · 真实反馈</span><span class="lang-en hidden">Launch · Real Feedback</span></div>
-                    <p><span class="lang-zh">首批数据即时获取，快速迭代</span><span class="lang-en hidden">Instant data collection, rapid iteration</span></p>
-                </div>
-            </div>
-
-            <div class="brandhub-process">
-                <h3><span class="lang-zh">品牌方入驻流程</span><span class="lang-en hidden">Brand Onboarding Process</span></h3>
-                <div class="process-steps">
-                    <div class="step-item">
-                        <span class="step-num">01</span>
-                        <h4><span class="lang-zh">扫码申请</span><span class="lang-en hidden">Apply</span></h4>
-                        <p><span class="lang-zh">填写品牌信息</span><span class="lang-en hidden">Submit brand info</span></p>
-                    </div>
-                    <div class="step-arrow">→</div>
-                    <div class="step-item">
-                        <span class="step-num">02</span>
-                        <h4><span class="lang-zh">选点位</span><span class="lang-en hidden">Select Location</span></h4>
-                        <p><span class="lang-zh">上海100+社区可选</span><span class="lang-en hidden">100+ Shanghai communities</span></p>
-                    </div>
-                    <div class="step-arrow">→</div>
-                    <div class="step-item">
-                        <span class="step-num">03</span>
-                        <h4><span class="lang-zh">拎包入驻</span><span class="lang-en hidden">Setup</span></h4>
-                        <p><span class="lang-zh">即租即用</span><span class="lang-en hidden">Ready to launch</span></p>
-                    </div>
-                    <div class="step-arrow">→</div>
-                    <div class="step-item">
-                        <span class="step-num">04</span>
-                        <h4><span class="lang-zh">首发体验</span><span class="lang-en hidden">Launch</span></h4>
-                        <p><span class="lang-zh">坐等真实订单</span><span class="lang-en hidden">Real orders arrive</span></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="brandhub-value">
-                <div class="value-item">
-                    <span class="value-icon">💰</span>
-                    <h4><span class="lang-zh">百米首发 · 低成本试水</span><span class="lang-en hidden">Low-Cost Trial</span></h4>
-                    <p><span class="lang-zh">商圈首发1/10成本</span><span class="lang-en hidden">1/10 cost of mall launch</span></p>
-                </div>
-                <div class="value-item">
-                    <span class="value-icon">⚡</span>
-                    <h4><span class="lang-zh">百米首发 · 快速反馈</span><span class="lang-en hidden">Rapid Feedback</span></h4>
-                    <p><span class="lang-zh">48小时真实数据</span><span class="lang-en hidden">48hr real data</span></p>
-                </div>
-                <div class="value-item">
-                    <span class="value-icon">🛒</span>
-                    <h4><span class="lang-zh">百米首发 · 即看即买</span><span class="lang-en hidden">See & Buy</span></h4>
-                    <p><span class="lang-zh">体验→下单→30分钟送达</span><span class="lang-en hidden">Experience → Order → 30-min delivery</span></p>
-                </div>
-                <div class="value-item">
-                    <span class="value-icon">👨‍👩‍👧‍👦</span>
-                    <h4><span class="lang-zh">百米首发 · 精准社区客群</span><span class="lang-en hidden">Community Targeting</span></h4>
-                    <p><span class="lang-zh">直连家庭决策者</span><span class="lang-en hidden">Direct family decision-maker access</span></p>
-                </div>
-            </div>
-
-            <div class="brandhub-form">
-                <h3><span class="lang-zh">百米首发 · 品牌方入驻申请</span><span class="lang-en hidden">100m Launch · Brand Application</span></h3>
-                <form id="brandhubForm" action="http://124.222.132.208/api/brandhub/apply" method="POST">
-                    <input type="text" name="brand_name" placeholder="品牌名称 / Brand Name" required />
-                    <input type="text" name="contact" placeholder="联系人 / Contact" required />
-                    <input type="tel" name="phone" placeholder="手机号 / Phone" required />
-                    <input type="text" name="category" placeholder="品牌品类 / Category" />
-                    <button type="submit" class="btn-primary"><span class="lang-zh">提交入驻意向</span><span class="lang-en hidden">Apply Now</span></button>
-                </form>
-                <p class="form-tip"><span class="lang-zh">提交后，工作人员将在24小时内联系您</span><span class="lang-en hidden">We'll respond within 24 hours</span></p>
-            </div>
-
-            <div class="brandhub-cta">
-                <p><span class="lang-zh">灵狐近选 · 百米首发 | 最低100元/天 · 10分钟入驻社区 · 坐等真实订单</span><span class="lang-en hidden">Linghu · 100m Launch | ¥100/day · 10-min Setup · Real Orders</span></p>
-                <a href="#brandhub" class="btn-primary"><span class="lang-zh">立即入驻</span><span class="lang-en hidden">Apply Now</span></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 创新亮点 ===== -->
-    <section class="section-innovation" id="innovation">
-        <div class="container">
-            <div class="section-tag lang-zh">创新亮点</div>
-            <div class="section-tag lang-en hidden">Innovation</div>
-            <h2 class="section-title lang-zh">四大核心创新</h2>
-            <h2 class="section-title lang-en hidden">Four Core Innovations</h2>
-            <p class="section-sub lang-zh">灵狐近选用技术重新定义社区零售的效率与温度</p>
-            <p class="section-sub lang-en hidden">Redefining community retail efficiency & warmth with technology</p>
-            <div class="innovation-grid">
-                <div class="innovation-item">
-                    <div class="icon">📉</div>
-                    <div><h4><span class="lang-zh">单均履约成本降低 75%</span><span class="lang-en hidden">75% Lower Fulfillment Cost</span></h4><p><span class="lang-zh">传统模式8-12元，灵狐闪电仓仅2-3元，配送效率行业领先。</span><span class="lang-en hidden">Traditional ¥8-12 vs Linghu ¥2-3 — industry-leading efficiency.</span></p></div>
-                </div>
-                <div class="innovation-item">
-                    <div class="icon">📍</div>
-                    <div><h4><span class="lang-zh">地理位置数字资产化</span><span class="lang-en hidden">Geo-Digital Assetization</span></h4><p><span class="lang-zh">将社区云仓收益权设计为可交易资产，开辟非稀释性融资新通道。</span><span class="lang-en hidden">Turning community warehouse revenue rights into tradable assets — a new non-dilutive financing channel.</span></p></div>
-                </div>
-                <div class="innovation-item">
-                    <div class="icon">♻️</div>
-                    <div><h4><span class="lang-zh">简装发货 · 绿色减碳</span><span class="lang-en hidden">Simple Packaging · Green Carbon</span></h4><p><span class="lang-zh">年减少纸箱消耗约2,900吨，相当于少砍伐4.9万棵树。</span><span class="lang-en hidden">Reducing ~2,900 tons of cardboard annually — equivalent to saving 49,000 trees.</span></p></div>
-                </div>
-                <div class="innovation-item">
-                    <div class="icon">🔄</div>
-                    <div><h4><span class="lang-zh">外单通 · 全渠道履约</span><span class="lang-en hidden">Cross-Channel Fulfillment</span></h4><p><span class="lang-zh">品牌方用一个库存服务天猫、京东、抖音全渠道，降本增效。</span><span class="lang-en hidden">One inventory serving Tmall, JD, Douyin — cost reduction across all channels.</span></p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 社会价值 ===== -->
-    <section class="section-impact" id="impact">
-        <div class="container">
-            <div class="section-tag lang-zh">社会价值</div>
-            <div class="section-tag lang-en hidden">Social Impact</div>
-            <h2 class="section-title lang-zh">重新定义即时零售的社会责任</h2>
-            <h2 class="section-title lang-en hidden">Redefining Social Responsibility in Instant Retail</h2>
-            <p class="section-sub lang-zh">灵狐近选在创造商业价值的同时，持续为社会减负</p>
-            <p class="section-sub lang-en hidden">Creating commercial value while continuously reducing social burden</p>
-            <div class="impact-grid">
-                <div class="impact-card"><div class="num">5,000+</div><div class="desc"><span class="lang-zh">社区仓主岗位（3年内）</span><span class="lang-en hidden">Community Warehouse Jobs (3 Yrs)</span></div></div>
-                <div class="impact-card"><div class="num">2,900吨</div><div class="desc"><span class="lang-zh">年减少纸箱消耗</span><span class="lang-en hidden">Annual Cardboard Reduction</span></div></div>
-                <div class="impact-card"><div class="num">4.9万棵</div><div class="desc"><span class="lang-zh">相当于少砍伐树木</span><span class="lang-en hidden">Trees Saved Equivalent</span></div></div>
-                <div class="impact-card"><div class="num">20-30%</div><div class="desc"><span class="lang-zh">农户直供增收幅度</span><span class="lang-en hidden">Farmer Income Increase</span></div></div>
+                <a href="#" class="btn-outline">查看更多新闻 →</a>
             </div>
         </div>
     </section>
@@ -1554,9 +790,9 @@
     <!-- ===== CTA ===== -->
     <section class="section-cta" id="contact">
         <div class="container">
-            <h2><span class="lang-zh">一起定义即时零售新范式</span><span class="lang-en hidden">Let's Define a New Paradigm for Instant Retail</span></h2>
-            <p><span class="lang-zh">无论你是品牌方、社区仓主、还是关注创新的投资人，灵狐近选都欢迎你的加入。</span><span class="lang-en hidden">Whether you're a brand, a community warehouse owner, or an investor — Linghu welcomes you.</span></p>
-            <a href="mailto:hello@aifox.club" class="btn-white">📧 <span class="lang-zh">联系我们</span><span class="lang-en hidden">Contact Us</span></a>
+            <h2>一起定义社区即时零售新范式</h2>
+            <p>无论你是品牌方、社区仓主、还是关注创新的投资人，灵狐近选都欢迎你的加入。</p>
+            <a href="mailto:hello@aifox.club" class="btn-white">📧 联系我们</a>
         </div>
     </section>
 
@@ -1565,112 +801,35 @@
         <div class="container">
             <div>
                 <div class="brand">灵狐<span>近选</span></div>
-                <div class="copy">© 2026 <span class="lang-zh">灵狐近选 · AI驱动社区即时零售</span><span class="lang-en hidden">Linghu · AI-Powered Community Instant Retail</span></div>
-                <div class="icp">
-                    <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">
-                        苏ICP备2026041363号
-                    </a>
-                </div>
+                <div class="copy">© 2026 灵狐近选 · AI驱动社区即时零售</div>
+                <div class="icp"><a href="https://beian.miit.gov.cn" target="_blank">苏ICP备2026041363号</a></div>
             </div>
             <div class="links">
-                <a href="#mode" class="lang-zh">核心模式</a>
-                <a href="#mode" class="lang-en hidden">Core Model</a>
-                <a href="#systems" class="lang-zh">产品系统</a>
-                <a href="#systems" class="lang-en hidden">Products</a>
-                <a href="#news" class="lang-zh">项目动态</a>
-                <a href="#news" class="lang-en hidden">News</a>
-                <a href="#library" class="lang-zh">近选社区书房</a>
-                <a href="#library" class="lang-en hidden">Library</a>
-                <a href="#brandhub" class="lang-zh">百米首发</a>
-                <a href="#brandhub" class="lang-en hidden">100m Launch</a>
-                <a href="#innovation" class="lang-zh">创新亮点</a>
-                <a href="#innovation" class="lang-en hidden">Innovation</a>
-                <a href="#impact" class="lang-zh">社会价值</a>
-                <a href="#impact" class="lang-en hidden">Impact</a>
-                <a href="mailto:hello@aifox.club"><span class="lang-zh">联系合作</span><span class="lang-en hidden">Contact</span></a>
+                <a href="#mode">核心模式</a>
+                <a href="#systems">产品系统</a>
+                <a href="#care">百应守护</a>
+                <a href="#news">项目动态</a>
+                <a href="mailto:hello@aifox.club">联系合作</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // ===== 语言切换功能 =====
-        let currentLang = 'zh';
-
-        function toggleLanguage() {
-            const zhElements = document.querySelectorAll('.lang-zh');
-            const enElements = document.querySelectorAll('.lang-en');
-            const toggleBtn = document.getElementById('langToggleFixed');
-
-            if (currentLang === 'zh') {
-                zhElements.forEach(el => el.classList.add('hidden'));
-                enElements.forEach(el => el.classList.remove('hidden'));
-                if (toggleBtn) toggleBtn.textContent = '中文';
-                currentLang = 'en';
-                document.documentElement.lang = 'en';
-            } else {
-                zhElements.forEach(el => el.classList.remove('hidden'));
-                enElements.forEach(el => el.classList.add('hidden'));
-                if (toggleBtn) toggleBtn.textContent = 'English';
-                currentLang = 'zh';
-                document.documentElement.lang = 'zh-CN';
-            }
-        }
-
-        // ===== 新闻弹窗 =====
-        const newsData = {
-            0: {
-                title_zh: '灵狐近选成功入驻零界魔方，获评OPC标杆项目',
-                title_en: 'Linghu Joins ZeroCube, Named OPC Benchmark Project',
-                date: '2026.07.16',
-                content_zh: '2026年7月，灵狐近选项目正式通过审核，成功入驻临港零界魔方OPC社区，并获评"超级个体（OPC）标杆项目"。<br><br>零界魔方是全国首个获"上海品牌"认证的OPC创业服务社区，由上海国资委旗下临港集团运营，首发办公空间已实现满租，已吸引超180个创业项目入驻，集聚人才超730人，成为全国OPC经济发展的标杆样本。<br><br>灵狐近选作为"AI+社区即时零售"赛道的代表项目，与零界魔方重点扶持的8类创新业态高度契合。入驻期间，项目将享受"办公零租金、配套居住零租金"的双重零成本支持，并可直接对接临港新片区的AI算力资源、产业生态和政策红利。<br><br>项目负责人表示："零界魔方的审核本身就是一次验证——能通过，说明方向是对的。接下来我们要做的，就是在一个城市里把密度做出来。"',
-                content_en: 'In July 2026, Linghu Jinxuan officially passed the review and joined the ZeroCube OPC Community in Lingang, recognized as a benchmark OPC (One-Person Company) project.<br><br>ZeroCube is China\'s first "Shanghai Brand"-certified OPC entrepreneurship service community, operated by Lingang Group under the Shanghai State-owned Assets Supervision and Administration Commission. Its initial office space is fully occupied, housing over 180 startups and 730+ talents, making it a benchmark for OPC economic development nationwide.<br><br>As a representative project in the "AI + Community Instant Retail" sector, Linghu Jinxuan aligns closely with the 8 types of innovation industries prioritized by ZeroCube. During its residency, the project will enjoy dual zero-cost support — "zero-rent office and zero-rent housing" — and will have direct access to AI computing resources, industrial ecosystems, and policy benefits in the Lingang New Area.<br><br>The project leader stated: "The ZeroCube review itself is a validation — passing it means the direction is right. What we need to do now is build density in one city."'
-            },
-            1: {
-                title_zh: '商务部：即时零售已成为零售业增长新动能',
-                title_en: 'Ministry: Instant Retail Becomes New Growth Engine',
-                date: '2026.06.28',
-                content_zh: '2025年即时零售市场规模达9714亿元，同比增长24%，预计2026年突破1万亿元。即时零售已成为中国零售业增长的新动能，是推动消费升级、扩大内需的重要力量。商务部表示，将继续完善即时零售发展支持政策，推动线上线下深度融合。',
-                content_en: 'In 2025, China\'s instant retail market reached ¥971.4 billion, up 24% year-on-year, and is expected to exceed ¥1 trillion in 2026. Instant retail has become a new growth engine for China\'s retail industry, serving as a key force in driving consumption upgrading and expanding domestic demand. The Ministry of Commerce stated it will continue to improve support policies and promote deep online-offline integration.'
-            },
-            2: {
-                title_zh: '社区商业“一刻钟便民生活圈”建设加速推进',
-                title_en: '"15-Minute Community Life Circle" Accelerates',
-                date: '2026.06.25',
-                content_zh: '全国已建设近4000个一刻钟便民生活圈，社区商业配套持续完善。一刻钟便民生活圈建设已成为补齐社区商业短板、提升居民生活品质的重要抓手。商务部将推动更多城市开展试点，力争到2028年实现地级及以上城市全覆盖。',
-                content_en: 'Nearly 4,000 "15-minute community life circles" have been built nationwide, with community commercial facilities continuously improving. This initiative has become a key approach to addressing gaps in community commerce and improving residents\' quality of life. The Ministry of Commerce will promote more pilot cities, aiming for full coverage in prefecture-level and above cities by 2028.'
-            }
-        };
-
-        function openNewsModal(id) {
-            var data = newsData[id];
-            if (!data) return;
-            var isZh = currentLang === 'zh';
-            var title = isZh ? data.title_zh : data.title_en;
-            var content = isZh ? data.content_zh : data.content_en;
-            document.getElementById('modalBody').innerHTML =
-                '<h2 style="font-size:24px;margin-bottom:12px;color:#1A1A2E;">' + title + '</h2>' +
-                '<div style="color:#999;font-size:14px;margin-bottom:20px;">' + data.date + '</div>' +
-                '<p style="font-size:16px;line-height:1.8;color:#333;">' + content + '</p>';
-            document.getElementById('newsModal').classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeNewsModal() {
-            document.getElementById('newsModal').classList.remove('show');
-            document.body.style.overflow = 'auto';
-        }
-
-        document.getElementById('newsModal').addEventListener('click', function(e) {
-            if (e.target === this) closeNewsModal();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeNewsModal();
-        });
-
-        // ===== 移动端菜单切换 =====
+        // ===== 移动端菜单 =====
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.nav-links').classList.toggle('open');
+        });
+
+        // ===== 平滑滚动 =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    document.querySelector('.nav-links').classList.remove('open');
+                }
+            });
         });
     </script>
 </body>
